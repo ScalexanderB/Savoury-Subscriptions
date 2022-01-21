@@ -36,6 +36,10 @@ nav {
     margin-right: 4.5rem;
 }
 
+nav ul {
+    list-style: none;
+}
+
 h1,
 h2,
 h3,
@@ -84,7 +88,7 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 header {

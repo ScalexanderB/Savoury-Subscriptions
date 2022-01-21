@@ -20,5 +20,9 @@
     background-color: rgb(228, 87, 122);
 }
 
+.bigBannerBlock span {
+    color: var(--dark);
+}
+
 
 /*  END OF BIG BANNER BLOCKS */
