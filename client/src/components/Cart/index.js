@@ -16,6 +16,7 @@ const Cart = () => {
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
   const [state, dispatch] = useStoreContext();
+  
   // for checkout session success
   useEffect(() => {
     if (data) {
@@ -24,17 +25,20 @@ const Cart = () => {
       });
     }
   }, [data]);
+
+  /* comment out until there are items to get from anywhere
   // for cart items
   useEffect(() => {
     async function getCart() {
       const cart = await idbPromise('cart', 'get');
-      dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
+      dispatch({ type: ADD_MULTIPLE_TO_CART, meals: [...cart] });
     };
 
     if (!state.cart.length) {
       getCart();
     }
   }, [state.cart.length, dispatch]);
+  */
 
   function toggleCart() {
     dispatch({ type: TOGGLE_CART });
@@ -49,19 +53,19 @@ const Cart = () => {
   }
 
   function submitCheckout() {
-    const productIds = [];
-    const productQtys = [];
+    const mealIds = [];
+    const mealQtys = [];
   
     state.cart.forEach((item) => {
       console.log(item);
       //for (let i = 0; i < item.quantity; i++) {
-        productIds.push(item._id);
-        productQtys.push(item.quantity);
+        mealIds.push(item._id);
+        mealQtys.push(item.quantity);
      //}
     });
     
     getCheckout({
-      variables: { products: productIds, qtys: productQtys }
+      variables: { meals: mealIds, qtys: mealQtys }
     });
   }
 
