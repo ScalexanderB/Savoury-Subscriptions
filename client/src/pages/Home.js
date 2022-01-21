@@ -1,7 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import './style.css';
 
 import Header from "../components/Header"
+
+const linkStyle = {
+  textDecoration: "none",
+  color: 'var(--dark)'
+};
 
 
 const Home = () => {
@@ -10,9 +16,13 @@ const Home = () => {
     <div className="container">
       <Header />
 
-    <div className="bigBannerBlock">
-      <span>Add Meals NOW!!</span>
-    </div>
+    
+      <div className="bigBannerBlock">
+        <Link to="/meals" style={linkStyle}>
+          <span>Add Meals NOW!!</span>
+        </Link>
+      </div>
+    
 
     <div className="bigBannerBlock">
       <span>About Us!</span>
