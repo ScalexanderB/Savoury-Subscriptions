@@ -18,7 +18,12 @@ const MealSchema = new Schema({
     ingredients: [],
     quantity: {
         type: Number,
-        required: true,
+        min: 0,
+        default: 0
+    },
+    price: {
+        type: Number,
+        required: true
     }
 });
 
