@@ -9,8 +9,17 @@ const MealSchema = new Schema({
         type: String,
         required: true,
     },
-    category: [],
-    ingredients: []
+    category: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Category'
+        }
+    ],
+    ingredients: [],
+    quantity: {
+        type: Number,
+        required: true,
+    }
 });
 
 const Meal = model('Meal', MealSchema);
