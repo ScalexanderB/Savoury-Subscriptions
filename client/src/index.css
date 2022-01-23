@@ -4,7 +4,7 @@
     --tertiary: #B12704;
     --light: #fafafa;
     --dark: #18181a;
-    --error: rgb(228, 46, 1);
+    --error: rgb(238, 86, 48);
     --spacing-one: calc(1rem * 0.5);
     --spacing-two: calc(1rem);
 }
@@ -50,6 +50,7 @@ h6 {
     font-weight: 500;
     margin: 5px 0;
     line-height: 1.25;
+    color:rgba(0, 0, 0, .5)
 }
 
 h1 {
@@ -151,6 +152,7 @@ input:focus {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    justify-content: center;
 }
 
 .flex-row {

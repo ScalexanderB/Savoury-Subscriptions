@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './style.css';
 
-import Header from "../components/Header"
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Home = () => {
 
@@ -23,8 +24,9 @@ const Home = () => {
       <div className="bigBannerBlock">
         <span>🤘 Let's Get Savory!! 🤘</span>
       </div>
-
     </div>
+  
+    
   );
 };
 

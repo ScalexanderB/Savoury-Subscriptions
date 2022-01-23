@@ -9,6 +9,11 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
+            <Link to="/meals">
+              Meals
+            </Link>
+          </li>
+          <li className="mx-1">
             <Link to="/myprofile">
               My Account 
             </Link>
@@ -24,6 +29,11 @@ function Nav() {
     } else {
       return (
         <ul className="flex-row">
+          <li className="mx-1">
+            <Link to="/meals">
+              Meals
+            </Link>
+          </li>
           <li className="mx-1">
             <Link to="/signup">
               Signup

@@ -16,6 +16,7 @@ import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import MyProfile from './pages/MyProfile';
 import Success from './pages/Success';
+import Footer from './components/Footer';
 
 import { StoreProvider } from "./utils/GlobalState";
 
