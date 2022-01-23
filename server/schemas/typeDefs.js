@@ -42,7 +42,7 @@ const typeDefs = gql`
 
   type Query{
       categories: [Category]
-      meals(category: ID, name String): [Meal]
+      meals(category: ID, name: String): [Meal]
       meal(_id: ID!): Meal
       user: User
       subscription(_id: ID!): Subscription
