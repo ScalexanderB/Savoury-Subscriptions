@@ -15,10 +15,14 @@ function MealsList() {
   const [state, dispatch] = useStoreContext();
 
   const { currentCategory } = state;
-  
-  const { loading, data } = useQuery(QUERY_MEALS);
+  console.log(state);
+  let { loading, data } = useQuery(QUERY_MEALS);
   
   useEffect(() => {
+    // add hardcoded meals data from state for testing
+    data = {meals: state.meals}
+    /*********************** */
+
     // if there's data to be stored
     if (data) {
       // let's store it in the global state object

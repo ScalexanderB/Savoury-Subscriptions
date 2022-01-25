@@ -8,6 +8,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useMealReducer({
         //once API is functioning replace meals with an empty array 
         meals: [{
+                _id: "a1",
                 name: "Tofu Pad Thai",
                 image: "pad-thai.jpg",
                 category: ["111", "222"],
@@ -16,6 +17,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 7.50
             },
             {
+                _id: "a2",
                 name: "Macaroni & Cheese",
                 image: "mac-cheese.jpg",
                 category: ["111"],
@@ -24,6 +26,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 5.75
             },
             {
+                _id: "a3",
                 name: "Veggie Burger",
                 image: "veggie-burger.jpg",
                 category: ["111"],
@@ -32,6 +35,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 6.00
             },
             {
+                _id: "a4",
                 name: "Shrimp Fried Rice",
                 image: "fried-rice.jpg",
                 category: ["222"],
@@ -40,6 +44,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 6.75
             },
             {
+                _id: "a5",
                 name: "BBQ Chicken",
                 image: "bbq-chicken.jpg",
                 category: ["222"],
@@ -48,6 +53,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 7.99
             },
             {
+                _id: "a6",
                 name: "Stuffed Peppers",
                 image: "stuffed-peppers.jpg",
                 category: ["333"],
@@ -56,6 +62,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 6.50
             },
             {
+                _id: "a7",
                 name: "Frittata",
                 image: "frittata.jpg",
                 category: ["111", "333"],
@@ -72,6 +79,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 7.25
             },
             {
+                _id: "a8",
                 name: "Fish Tacos",
                 image: "fish-tacos.jpg",
                 category: ["000"],
@@ -80,6 +88,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 8.15
             },
             {
+                _id: "a9",
                 name: "Chicken Parm",
                 image: "chicken-parm.jpg",
                 category: ["000"],
@@ -88,6 +97,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 6.50
             },
             {
+                _id: "b1",
                 name: "Chile",
                 image: "chile.jpg",
                 category: ["222"],
@@ -96,6 +106,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 7.15
             },
             {
+                _id: "b2",
                 name: "Chicken Alfredo",
                 image: "chicken-alfredo.jpg",
                 category: ["000"],
