@@ -57,7 +57,7 @@ const Cart = () => {
     const mealQtys = [];
   
     state.cart.forEach((item) => {
-      console.log(item);
+      //console.log(item);
       //for (let i = 0; i < item.quantity; i++) {
         mealIds.push(item._id);
         mealQtys.push(item.quantity);
@@ -74,7 +74,7 @@ const Cart = () => {
       <div className="cart-closed" onClick={toggleCart}>
         <span
           role="img"
-          aria-label="Shopping Cart">🛒</span>
+          aria-label="Subscription Box">🍜</span>
       </div>
     );
   }
@@ -82,7 +82,7 @@ const Cart = () => {
   return (
     <div className="cart">
   <div className="close" onClick={toggleCart}>[close]</div>
-  <h2>Shopping Cart</h2>
+  <h2>Subscription Box</h2>
   {state.cart.length ? (
     <div>
       {state.cart.map(item => (
@@ -101,12 +101,26 @@ const Cart = () => {
       </div>
     </div>
   ) : (
-    <h3>
-      <span role="img" aria-label="shocked">
-        😱
+    <h4 style={{textAlign: 'center'}}>
+      <div>
+      <span role="img" aria-label="pensive">
+      😔
       </span>
-      You haven't added anything to your cart yet!
-    </h3>
+      </div>
+      You haven't added any tasty meals to your box yet!
+      <div>
+      <span role="img" aria-label="NO!">
+      🚫
+      </span>
+      <span role="img" aria-label="fried-prawn">
+      🍤
+      </span>
+      <span role="img" aria-label="package">
+      📦
+      </span>
+      </div>
+   
+    </h4>
   )}
 </div>
   );

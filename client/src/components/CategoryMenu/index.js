@@ -16,6 +16,8 @@ function CategoryMenu() {
   useEffect(() => {
     // add hardcoded category data from state for testing
     categoryData = {categories}
+    /*********************** */
+
     // if categoryData exists or has changed from the response of useQuery, then run dispatch()
     if (categoryData) {
       // execute our dispatch function with our action object indicating the type of action and the data to set our state for categories to
@@ -44,7 +46,7 @@ function CategoryMenu() {
   };
 
   return (
-    <div>
+  <div className="container">
     {categories.map(item => (
       <button
         key={item._id}
