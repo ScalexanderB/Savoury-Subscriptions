@@ -15,7 +15,7 @@ export const QUERY_MEALS = gql `
     meals(category: $category) {
       _id
       name
-      ingredient
+      ingredients
       price
       image
       category {
