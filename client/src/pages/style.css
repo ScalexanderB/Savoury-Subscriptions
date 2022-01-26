@@ -30,7 +30,8 @@
 /* HEADER */
 
 .bg-image {
-    opacity: 0.4;
+    background-image: url('../components/assets/images/table-spread.jpg');
+    height: 600px;
 }
 
 .maskbox {
@@ -40,13 +41,44 @@
 .mask {
     color: rgb(255, 255, 255);
     font-weight: bold;
-    font-size: 80px;
+    font-style: italic;
+    font-size: 60px;
     width: 100%;
-    top: 30%;
-    left: 20%;
-    right: 50%;
     position: absolute;
+    left: 42%;
+    overflow: hidden;
+    margin: 10px;
 }
+
+.navbar nav {
+    position: relative;
+    margin-bottom: 50px;
+    width: 100%;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+ul {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.logo img {
+   width: 150px;
+   height: 80px;
+   margin-top: -16px;
+   margin-bottom: -23px;
+}
+
+.flex-row {
+    justify-content: space-between;
+}
+
+.footer {
+    text-align: center;
+}
+
+
 
 
 

@@ -24,6 +24,7 @@ const Home = () => {
       <div className="bigBannerBlock">
         <span>🤘 Let's Get Savory!! 🤘</span>
       </div>
+
     </div>
   
     

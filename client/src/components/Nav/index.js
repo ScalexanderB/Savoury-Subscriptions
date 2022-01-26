@@ -1,13 +1,21 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import logoImage from '../assets/images/savoury-logo2.png';
+import "../../pages/style.css"
 
 function Nav() {
 
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul className="flex-row">
+      <div className="navbar nav">
+        <ul className="flex-row space-between">
+          <div className="logo">
+              <Link to="/">
+                  <img src={logoImage} alt="Savoury Logo"/>
+              </Link>
+          </div>
           <li className="mx-1">
             <Link to="/meals">
               Meals
@@ -25,10 +33,17 @@ function Nav() {
             </a>
           </li>
         </ul>
+      </div>  
       );
     } else {
       return (
-        <ul className="flex-row">
+      <div className="navbar">
+        <ul className="flex-row space-between">
+          <div className="logo">
+              <Link to="/">
+                <img src={logoImage} alt="Savoury Logo"/>
+              </Link>
+          </div> 
           <li className="mx-1">
             <Link to="/meals">
               Meals
@@ -45,21 +60,18 @@ function Nav() {
             </Link>
           </li>
         </ul>
+      </div>
       );
     }
   }
 
   return (
     <header className="flex-row px-1">
-      <h1>
-        <Link to="/">
-          Savoury Subscriptions
-        </Link>
-      </h1>
 
       <nav>
         {showNavigation()}
       </nav>
+
     </header>
   );
 }

@@ -55,6 +55,7 @@ function App() {
             <Route exact path="/success" component={Success} />
             <Route component={NoMatch} />
           </Switch>
+          <Footer />
          </StoreProvider>
         </div>
       </Router>

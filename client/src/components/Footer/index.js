@@ -2,11 +2,14 @@ import React from "react";
 import '../../pages/style.css';
 
 function Footer() {
+
+    return (
     <div className="footer">
-        <div className="container">
-            <span className="text-muted">This is footer text.</span>
+        <div className="footer-text">
+            &copy; 2022 Team Savoury 
         </div>
     </div>
+    )
 }
 
 export default Footer;
