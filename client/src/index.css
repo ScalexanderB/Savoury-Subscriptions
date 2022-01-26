@@ -120,8 +120,8 @@ button[disabled] {
     opacity: .8;
 }
 
-img {
-    max-width: 100%;
+.card img {
+    max-width: 35%;
 }
 
 span[role="img"] {

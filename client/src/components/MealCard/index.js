@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
@@ -10,11 +9,18 @@ function MealCard(item) {
   const [state, dispatch] = useStoreContext();
   const { cart } = state;
 
+  const quantity = 1;
+  const onChange = (e) => {
+    const value = e.target.value;
+    // need a simple counter in the state for each meal card to adjust the servings quantity
+  };
+
   const addToCart = () => {
     // find the cart item with the matching id
     const itemInCart = cart.find((cartItem) => cartItem._id === _id);
   
     // if there was a match, call UPDATE with a new purchase quantity
+    /// BUT this should add a new meal package with its own servings quantity
     if (itemInCart) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
@@ -34,17 +40,29 @@ function MealCard(item) {
   };
 
   return (
-    <div className="card px-1 py-1">
-      <Link to={`/meals/${_id}`}>
-        <img
-          alt={name}
-          src={`/images/${image}`}
-        />
-        <p>{name}</p>
-        <p>{ingredients}</p>
-      </Link>
+    <div className="card px-1 py-1" style={{border:"1px soild black"}}>
+        <h3>{name}</h3>
+        <span role="img" aria-label="favourite">
+        ⭐
+        </span>
+
+        <div>
+            <img
+            alt={name}
+            src={`/images/${image}`}
+            className="mx-2"
+            />
+            <span>Ingredients:<br/>{ingredients}</span>
+        </div>
       <div>
-        <span>${price}</span>
+      <span>Qty:</span>
+          <input style={{width:"2.5rem"}}
+            type="number"
+            placeholder="1"
+            value={quantity}
+            onChange={onChange}
+          />
+        <span>Price: ${price}</span>
       </div>
       <button onClick={addToCart}>Add To Box</button>
     </div>
