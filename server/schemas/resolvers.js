@@ -109,18 +109,18 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in.');
         },
-        updateUser: async (parent, args, context) => {
-            if (context.user) {
-                return await User.findByIdAndUpdate(context.user._id, args, { new: true });
-            }
+        // updateUser: async (parent, args, context) => {
+        //     if (context.user) {
+        //         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+        //     }
 
-            throw new AuthenticationError('Not logged in.');
-        },
-        updateMeal: async (parent, { _id, quantity }) => {
-            const decrement = Math.abs(quantity) * -1;
+        //     throw new AuthenticationError('Not logged in.');
+        // },
+        // updateMeal: async (parent, { _id, quantity }) => {
+        //     const decrement = Math.abs(quantity) * -1;
 
-            return await Meal.findByIdAndUpdate(_id, {$inc: { quantity: decrement }}, { new: true });
-        },
+        //     return await Meal.findByIdAndUpdate(_id, {$inc: { quantity: decrement }}, { new: true });
+        // },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
 
