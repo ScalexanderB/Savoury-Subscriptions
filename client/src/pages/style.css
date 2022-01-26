@@ -1,0 +1,28 @@
+/* BIG BANNER BLOCKS USED ON HOME PAGE */
+
+.bigBannerBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4.2rem;
+    font-weight: bolder;
+    width: 100%;
+    min-height: 25rem;
+    padding: 4rem;
+    background-color: rgb(87, 228, 134);
+}
+
+.bigBannerBlock:nth-child(2n+1) {
+    background-color: rgb(87, 132, 228);
+}
+
+.bigBannerBlock:nth-child(3n+1) {
+    background-color: rgb(228, 87, 122);
+}
+
+.bigBannerBlock span {
+    color: var(--dark);
+}
+
+
+/*  END OF BIG BANNER BLOCKS */
