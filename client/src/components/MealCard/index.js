@@ -15,6 +15,10 @@ function MealCard(item) {
     // need a simple counter in the state for each meal card to adjust the servings quantity
   };
 
+  function financial(x) {
+    return Number.parseFloat(x).toFixed(2);
+  }
+
   const addToCart = () => {
     // find the cart item with the matching id
     const itemInCart = cart.find((cartItem) => cartItem._id === _id);
@@ -40,29 +44,38 @@ function MealCard(item) {
   };
 
   return (
-    <div className="card px-1 py-1" style={{border:"1px soild black"}}>
-        <h3>{name}</h3>
-        <span role="img" aria-label="favourite">
-        ⭐
-        </span>
-
-        <div>
-            <img
+    <div className="card p-2" style={{border:"1px soild black"}}>
+        <div className="d-flex" style={{justifyContent:"space-between"}}>
+          <h3>{name}</h3>
+          <span role="img" aria-label="favourite">
+            ⭐
+          </span>
+        </div>
+        <div className="d-flex" style={{textAlign:"left", justifyContent:"center"}}>
+            <img style={{alignSelf:"flex-start"}}
             alt={name}
             src={`/images/${image}`}
             className="mx-2"
             />
-            <span>Ingredients:<br/>{ingredients}</span>
+            <span style={{width:"60%"}}>
+                <strong>Ingredients:</strong>
+              <ul className="d-flex flex-column flex-wrap" style={{ height:"6rem", paddingLeft:0}}>
+                {ingredients.map((item) => (
+                    <li>{item}</li>
+                ))}
+              </ul>
+            </span>
         </div>
-      <div>
-      <span>Qty:</span>
-          <input style={{width:"2.5rem"}}
+      <div className="d-flex" style={{justifyContent:"space-between", paddingBottom:".6rem"}}>
+        <span style={{paddingLeft:"2rem"}}>Servings:&nbsp;
+          <input style={{width:"2.1rem", padding:0, paddingLeft:".2rem"}}
             type="number"
             placeholder="1"
             value={quantity}
             onChange={onChange}
           />
-        <span>Price: ${price}</span>
+        </span>
+        <span style={{paddingRight:"2rem"}}><h5 style={{display:"inline"}}>Price: ${financial(price)}</h5> </span>
       </div>
       <button onClick={addToCart}>Add To Box</button>
     </div>

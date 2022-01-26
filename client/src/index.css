@@ -36,7 +36,8 @@ nav {
     margin-right: 4.5rem;
 }
 
-nav ul {
+nav ul,
+.card ul {
     list-style: none;
 }
 
@@ -122,6 +123,7 @@ button[disabled] {
 
 .card img {
     max-width: 35%;
+    object-fit: contain;
 }
 
 span[role="img"] {
@@ -207,8 +209,9 @@ input:focus {
 }
 
 .card {
-    width: 25%;
+    width: 30%;
     text-align: center;
+    margin: .5rem .8rem;
 }
 
 .error-text {
