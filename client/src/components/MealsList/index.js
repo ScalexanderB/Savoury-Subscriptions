@@ -48,13 +48,13 @@ function MealsList() {
     }, [data, loading, dispatch]);
   
   function filterMeals() {  /// 111 is the 'None' Category
-    if (!currentCategory || currentCategory == '111') {
+    if (!currentCategory || currentCategory == '101') {
       return state.meals;
     }
   
     return state.meals.filter(meal => meal.category.find( id =>  id === currentCategory ));
   }
-  
+
   return (
     <div className="my-2">
       <h2>Select Your Meals:</h2>
