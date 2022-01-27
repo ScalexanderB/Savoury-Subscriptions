@@ -59,7 +59,7 @@ function MealsList() {
     <div className="my-2">
       <h2>Select Your Meals:</h2>
       {state.meals.length ? (
-        <div className="flex-row">
+        <div className="flex-row justify-content-center">
           {filterMeals().map((meal, index) => (
             <MealCard
               key={index}

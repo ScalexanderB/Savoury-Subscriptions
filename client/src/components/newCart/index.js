@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import CartItem from '../newCartItem';
 import Auth from '../../utils/auth';
 import './style.css';
@@ -75,17 +76,19 @@ const NewCart = () => {
       <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#popUpShoppingCart" aria-controls="popUpShoppingCart">View your cart</button>
 </div>
 
-<div className="offcanvas offcanvas-bottom show" data-bs-scroll="true" tabIndex="-1" id="popUpShoppingCart" aria-labelledby="popUpShoppingCartLabel" style={{height:"60%"}}>
+<div className="offcanvas offcanvas-bottom" data-bs-scroll="true" tabIndex="-1" id="popUpShoppingCart" aria-labelledby="popUpShoppingCartLabel" style={{height:"20rem"}}>
   <div className="offcanvas-header">
-    <h5 className="offcanvas-title" id="popUpShoppingCartLabel">This will be a shopping cart</h5>
+    <h4 className="offcanvas-title" id="popUpShoppingCartLabel">Your Subscription Box</h4>
     <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div className="offcanvas-body">
   {state.cart.length ? (
     <div>
-      {state.cart.map(item => (
-        <CartItem key={item._id} item={item} />
+      <div className="SubBoxScrollItem">
+      {state.cart.map((item,index) => (
+        <CartItem key={item._id+"-"+index} item={item} />
       ))}
+      </div>
       <div className="flex-row space-between">
         <strong>Total: ${calculateTotal()}</strong>
         {
@@ -94,7 +97,7 @@ const NewCart = () => {
             Checkout
           </button>
             :
-            <span>(log in to check out)</span>
+            <span>(<Link to="/login">Login</Link> to check out)</span>
         }
       </div>
     </div>

@@ -71,6 +71,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 5.75
             },
             {
+                _id:"c1",
                 name: "Taco Salad",
                 image: "taco-salad.jpg",
                 category: ["333"],

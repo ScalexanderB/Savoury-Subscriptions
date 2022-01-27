@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 import { useStoreContext } from '../../utils/GlobalState';
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { ADD_TO_CART } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 
 function MealCard(item) {
-  const { name, image, ingredients, price, _id } = item;
-  const [state, dispatch] = useStoreContext();
-  const { cart } = state;
+  const { name, image, ingredients, price } = item;
+  const [, dispatch] = useStoreContext();
+  //const { cart } = state;
 
   const [qty, setQty] = useState(1);
 
@@ -23,29 +23,15 @@ function MealCard(item) {
   }
 
   const addToCart = () => {
-    // find the cart item with the matching id
-    //const itemInCart = cart.find((cartItem) => cartItem._id === _id);
-  
-    // if there was a match, call UPDATE with a new purchase quantity
-    /// BUT this should add a new meal package with its own servings quantity
-    /*
-    if (itemInCart) {
-      dispatch({
-        type: UPDATE_CART_QUANTITY,
-        _id: _id,
-        quantity: parseInt(itemInCart.quantity) + 1
-      }); idbPromise('cart', 'put', {
-        ...itemInCart,
-        quantity: parseInt(itemInCart.quantity) + 1
-      });
-    } else {
-        */
+    /// this should add a new meal package with its own servings quantity
+    /// wether or not the meal already is present in the cart
+       
        console.log(item);
       dispatch({
         type: ADD_TO_CART,
-        product: { ...item, quantity: qty }
+        meal: { ...item, quantity: qty }
       });
-      idbPromise('cart', 'put', { ...item, quantity: qty });
+      idbPromise('cart', 'put', { ...item, quantity: qty, _id: Date.now() });
    // }
   };
 
@@ -72,7 +58,7 @@ function MealCard(item) {
               </ul>
             </span>
         </div>
-      <div className="d-flex" style={{justifyContent:"space-between", paddingBottom:".6rem"}}>
+      <div className="d-flex mealCost">
         <span style={{paddingLeft:"2rem"}}>Servings:&nbsp;
           <input style={{width:"2.1rem", padding:0, paddingLeft:".2rem"}}
             type="number"

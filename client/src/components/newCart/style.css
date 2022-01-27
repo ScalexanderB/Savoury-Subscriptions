@@ -59,3 +59,32 @@
     padding: 0;
     margin: 0 .5rem 1rem 0;
 }
+
+.mealCost {
+    justify-content: space-between;
+    padding-bottom: .6rem;
+}
+
+.SubBox {
+    border: 1px soild black;
+    flex: 0 0 16rem;
+}
+
+.SubBoxScrollItem {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+}
+
+.offcanvas-header {
+    padding-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        flex: 0 0 99%;
+    }
+    .mealCost {
+        padding-top: .6rem;
+    }
+}

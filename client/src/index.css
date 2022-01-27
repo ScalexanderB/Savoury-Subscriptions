@@ -209,7 +209,7 @@ input:focus {
 }
 
 .card {
-    width: 30%;
+    flex: 0 0 22rem;
     text-align: center;
     margin: .5rem .8rem;
 }
