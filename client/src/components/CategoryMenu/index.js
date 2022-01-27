@@ -46,17 +46,17 @@ function CategoryMenu() {
   };
 
   return (
-  <div className="container">
-    {categories.map(item => (
-      <button
-        key={item._id}
-        onClick={() => {
-          handleClick(item._id);
-        }}
-      >
-        {item.name}
-      </button>
-    ))}
+  <div className="categoryScrollBox">
+      {categories.map(item => (
+        <button
+          key={item._id}
+          onClick={() => {
+            handleClick(item._id);
+          }}
+        >
+          {item.name}
+        </button>
+      ))}
   </div>
   );
 }

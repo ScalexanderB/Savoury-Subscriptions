@@ -71,10 +71,15 @@
     flex: 0 0 16rem;
 }
 
-.SubBoxScrollItem {
+.SubBoxScrollItem,
+.categoryScrollBox {
     display: flex;
     flex-direction: row;
     overflow: auto;
+}
+
+.categoryScrollBox {
+    margin: .2rem 0;
 }
 
 .offcanvas-header {
