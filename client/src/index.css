@@ -28,18 +28,6 @@ body {
     color: var(--dark);
 }
 
-header {
-    justify-content: space-between;
-}
-
-nav {
-    margin-right: 4.5rem;
-}
-
-nav ul {
-    list-style: none;
-}
-
 h1,
 h2,
 h3,
@@ -92,13 +80,6 @@ a:hover {
     text-decoration: none;
 }
 
-header {
-    background: var(--primary);
-}
-
-header a {
-    color: var(--light);
-}
 
 button {
     font-size: 1rem;
@@ -155,6 +136,32 @@ input:focus {
     justify-content: center;
 }
 
+/* HEADER & NAV STYLES */
+
+.nav-logo {
+    width: 30%;
+    margin: var(--spacing-one) var(--spacing-two);
+}
+
+header {
+    justify-content: space-between;
+}
+
+nav {
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    padding: 0 var(--spacing-two);
+    color: var(--light);
+}
+
+header {
+    background: var(--primary);
+}
+
+
 .flex-row {
     display: flex;
     flex-wrap: wrap;
@@ -162,6 +169,10 @@ input:focus {
 
 .space-between {
     justify-content: space-between;
+}
+
+.align-center {
+    align-itmes: center;
 }
 
 .flex-end {
