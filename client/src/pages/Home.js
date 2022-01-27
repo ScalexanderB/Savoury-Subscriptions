@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import './style.css';
 
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const Home = () => {
 
@@ -11,17 +10,17 @@ const Home = () => {
     <div className="container">
       <Header />
     
-      <section className='home-section py-2'>
+      <section className='home-section p-3'>
         <Link to="/meals">
           <span>Add Meals NOW!!</span>
         </Link>
       </section>
     
-      <section className='home-section py-2'>
+      <section className='home-section p-3'>
         <span>About Us!</span>
       </section>
 
-      <section className='home-section py-2'>
+      <section className='home-section p-3'>
         <span>🤘 Let's Get Savory!! 🤘</span>
       </section>
 

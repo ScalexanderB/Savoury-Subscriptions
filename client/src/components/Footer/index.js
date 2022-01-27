@@ -5,7 +5,7 @@ function Footer() {
 
     return (
     <div className="footer">
-        <div className="footer-text">
+        <div className="footer-text py-2">
             &copy; 2022 Team Savoury 
         </div>
     </div>
