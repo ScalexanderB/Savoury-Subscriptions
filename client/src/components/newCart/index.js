@@ -73,7 +73,7 @@ const NewCart = () => {
   return (
 <>
 <div className="cart-closed" onClick={toggleCart}>
-      <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#popUpShoppingCart" aria-controls="popUpShoppingCart">View your cart</button>
+      <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#popUpShoppingCart" aria-controls="popUpShoppingCart">{state.cart.length} Meals in Box</button>
 </div>
 
 <div className="offcanvas offcanvas-bottom" data-bs-scroll="true" tabIndex="-1" id="popUpShoppingCart" aria-labelledby="popUpShoppingCartLabel" style={{height:"20rem"}}>

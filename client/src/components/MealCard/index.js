@@ -9,12 +9,14 @@ function MealCard(item) {
   const [, dispatch] = useStoreContext();
   //const { cart } = state;
 
+  // for quantity of servings
   const [qty, setQty] = useState(1);
+  // for added message flash alert
+  const [added, setAdded] = useState(0);
 
   const onChange = (e) => {
     let value = e.target.value;
-    // need a simple counter in the state for each meal card to adjust the servings quantity
-    if(parseInt(value) < 1) value=1;
+    if(parseInt(value) < 1) {value=1;}
     setQty(value);
   };
 
@@ -25,18 +27,33 @@ function MealCard(item) {
   const addToCart = () => {
     /// this should add a new meal package with its own servings quantity
     /// wether or not the meal already is present in the cart
-       
-       console.log(item);
+       //console.log(item);
+
+    // flash and added to cart message then reset the mealcard after a timeout
+       setAdded(1);
+       setTimeout(() => {
+        setAdded(0);
+        setQty(1);
+       }, 950);
+
       dispatch({
         type: ADD_TO_CART,
         meal: { ...item, quantity: qty }
       });
       idbPromise('cart', 'put', { ...item, quantity: qty, _id: Date.now() });
-   // }
+
   };
 
   return (
     <div className="card p-2" style={{border:"1px soild black"}}>
+       <div className={`addedMessage ${added ? "isAdded" : ""}`}>
+        <h3>
+          Meal Added to <br/>Subscription!
+          <div role="img" aria-label="Successfuly added">
+            ✅ 
+          </div>
+        </h3>
+      </div>
         <div className="d-flex" style={{justifyContent:"space-between"}}>
           <h3>{name}</h3>
           <span role="img" aria-label="favourite">
