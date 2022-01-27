@@ -78,8 +78,8 @@ import "../../pages/style.css"
 
 function Nav() {
   return (
-    <header className='flex-row px-1'>
-      <div className='mx-2 my-1'>
+    <header className='flex-row px-2'>
+      <div>
         <a href='/'>
           <img className='nav-logo' src={logoImage} alt='Savoury Subscriptions logo' />
         </a>

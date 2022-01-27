@@ -11,19 +11,19 @@ const Home = () => {
     <div className="container">
       <Header />
     
-      <div className="bigBannerBlock">
+      <section className='home-section py-2'>
         <Link to="/meals">
           <span>Add Meals NOW!!</span>
         </Link>
-      </div>
+      </section>
     
-      <div className="bigBannerBlock">
+      <section className='home-section py-2'>
         <span>About Us!</span>
-      </div>
+      </section>
 
-      <div className="bigBannerBlock">
+      <section className='home-section py-2'>
         <span>🤘 Let's Get Savory!! 🤘</span>
-      </div>
+      </section>
 
     </div>
   
