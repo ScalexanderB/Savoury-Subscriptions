@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
 import './style.css';
@@ -69,25 +70,25 @@ const Cart = () => {
     });
   }
 
-  if (!state.cartOpen) {
-    return (
-      <div className="cart-closed" onClick={toggleCart}>
-        <span
-          role="img"
-          aria-label="Subscription Box">🍜</span>
-      </div>
-    );
-  }
-
   return (
-    <div className="cart">
-  <div className="close" onClick={toggleCart}>[close]</div>
-  <h2>Subscription Box</h2>
+<>
+<div className="cart-closed" onClick={toggleCart}>
+      <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#popUpShoppingCart" aria-controls="popUpShoppingCart">{state.cart.length} Meals in Box</button>
+</div>
+
+<div className="offcanvas offcanvas-bottom" data-bs-scroll="true" tabIndex="-1" id="popUpShoppingCart" aria-labelledby="popUpShoppingCartLabel" style={{height:"20rem"}}>
+  <div className="offcanvas-header">
+    <h4 className="offcanvas-title" id="popUpShoppingCartLabel">Your Subscription Box</h4>
+    <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div className="offcanvas-body">
   {state.cart.length ? (
     <div>
-      {state.cart.map(item => (
-        <CartItem key={item._id} item={item} />
+      <div className="SubBoxScrollItem">
+      {state.cart.map((item,index) => (
+        <CartItem key={item._id+"-"+index} item={item} />
       ))}
+      </div>
       <div className="flex-row space-between">
         <strong>Total: ${calculateTotal()}</strong>
         {
@@ -96,7 +97,7 @@ const Cart = () => {
             Checkout
           </button>
             :
-            <span>(log in to check out)</span>
+            <span>(<Link to="/login">Login</Link> to check out)</span>
         }
       </div>
     </div>
@@ -122,7 +123,10 @@ const Cart = () => {
    
     </h4>
   )}
+  </div>
 </div>
+
+</>
   );
 };
 

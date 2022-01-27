@@ -71,7 +71,7 @@ const StoreProvider = ({ value = [], ...props }) => {
                 price: 5.75
             },
             {
-                _id:"c1",
+                _id: "c1",
                 name: "Taco Salad",
                 image: "taco-salad.jpg",
                 category: ["333"],
@@ -119,7 +119,7 @@ const StoreProvider = ({ value = [], ...props }) => {
         cart: [],
         cartOpen: false,
         //once API is functioning replace categories with an empty array 
-        categories: [{ name: 'None', _id: "101" },
+        categories: [{ name: 'All', _id: "101" },
             { name: 'Vegetarian', _id: "111" },
             { name: 'Dairy Free', _id: "222" },
             { name: 'Gluten Free', _id: "333" },
@@ -127,7 +127,7 @@ const StoreProvider = ({ value = [], ...props }) => {
             { name: 'Vegen', _id: "555" },
             { name: 'Halal', _id: "666" },
             { name: 'Kosher', _id: "777" },
-            { name: 'Favourite', _id: "888" },
+            { name: 'Favourites', _id: "888" },
         ],
         currentCategory: ''
     });

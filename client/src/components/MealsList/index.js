@@ -5,11 +5,10 @@ import { UPDATE_MEALS } from '../../utils/actions';
 
 import MealCard from '../MealCard';
 import { QUERY_MEALS } from '../../utils/queries';
-
-
 import { idbPromise } from "../../utils/helpers";
 
-const spinner ="https://giphy.com/stickers/happy-excited-morning-5BBYkpgeVVuZW";
+import spinner from "../../egg-loading.gif"
+
 
 function MealsList() {
   const [state, dispatch] = useStoreContext();
