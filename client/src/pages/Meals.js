@@ -1,7 +1,7 @@
 import React from "react";
 import CategoryMenu from "../components/CategoryMenu"
 import MealsList from "../components/MealsList";
-import Cart from "../components/Cart";
+import NewCart from "../components/newCart";
 
 const Meals = () => {
 
@@ -9,7 +9,7 @@ const Meals = () => {
     <div className="container">
       <CategoryMenu />
       <MealsList />
-      <Cart />
+      <NewCart />
     </div>
   );
 };
