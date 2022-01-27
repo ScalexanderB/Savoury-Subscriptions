@@ -7,7 +7,7 @@ import Header from "../components/Header";
 const Home = () => {
 
   return (
-    <div className="container">
+    <div>
       <Header />
     
       <section className='home-section p-3'>

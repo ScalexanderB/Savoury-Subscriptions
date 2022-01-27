@@ -134,7 +134,7 @@ input:focus {
 }
 
 .container {
-    width: 100%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
@@ -169,12 +169,14 @@ nav a {
     background-size: cover;
 }
 .home-section {
-    width: 100%;
+    width: 80%;
     height: 20rem;
     display: flex;
     justify-content: center;
     font-size: 2.25rem;
     font-weight: bolder;
+    margin-left: auto;
+    margin-right: auto;
 }
 .maskbox {
     border: 1px;
@@ -190,6 +192,24 @@ nav a {
     margin: 10px;
 }
 
+/* PROFILE STYLES */
+
+.account-info {
+  width: 30%;
+  font-weight: bold;
+  color: var(--primary);
+}
+.account-emoji {
+  font-size: 5rem;
+}
+.sub-form {
+  width: 50%;
+  background-color: var(--light);
+  border: none;
+  border-radius: 15px;
+  padding: var(--spacing-four);
+}
+
 .card {
     width: 25%;
     text-align: center;
@@ -202,6 +222,13 @@ nav a {
 @media screen and (max-width: 768px) {
     .card {
         width: 100%;
+    }
+    .account-info {
+      width: 100%;
+    }
+    .sub-form {
+      width: 100%;
+      text-align: center;
     }
 }
 
