@@ -6,6 +6,7 @@ import { UPDATE_MEALS } from '../../utils/actions';
 import MealCard from '../MealCard';
 import { QUERY_MEALS } from '../../utils/queries';
 
+
 import { idbPromise } from "../../utils/helpers";
 
 const spinner ="https://giphy.com/stickers/happy-excited-morning-5BBYkpgeVVuZW";
@@ -14,14 +15,13 @@ function MealsList() {
   const [state, dispatch] = useStoreContext();
 
   const { currentCategory } = state;
-  console.log(state);
+  
   let { loading, data } = useQuery(QUERY_MEALS);
   
   useEffect(() => {
     // add hardcoded meals data from state for testing
     data = {meals: state.meals}
     /*********************** */
-
     // if there's data to be stored
     if (data) {
       // let's store it in the global state object
@@ -47,21 +47,22 @@ function MealsList() {
       }
     }, [data, loading, dispatch]);
   
-  function filterMeals() {
-    if (!currentCategory) {
+  function filterMeals() {  /// 111 is the 'None' Category
+    if (!currentCategory || currentCategory == '111') {
       return state.meals;
     }
   
-    return state.meals.filter(meal => meal.category._id === currentCategory);
+    return state.meals.filter(meal => meal.category.find( id =>  id === currentCategory ));
   }
+  
   return (
     <div className="my-2">
       <h2>Select Your Meals:</h2>
       {state.meals.length ? (
         <div className="flex-row">
-          {filterMeals().map((meal) => (
+          {filterMeals().map((meal, index) => (
             <MealCard
-              key={meal._id}
+              key={index}
               _id={meal._id}
               image={meal.image}
               name={meal.name}

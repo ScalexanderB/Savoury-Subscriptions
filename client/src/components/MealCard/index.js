@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 
 function MealCard(item) {
-  const { _id, name, image, ingredients, price } = item;
+  const { name, image, ingredients, price, _id } = item;
   const [state, dispatch] = useStoreContext();
   const { cart } = state;
 
-  const quantity = 1;
+  const [qty, setQty] = useState(1);
+
   const onChange = (e) => {
-    const value = e.target.value;
+    let value = e.target.value;
     // need a simple counter in the state for each meal card to adjust the servings quantity
+    if(parseInt(value) < 1) value=1;
+    setQty(value);
   };
 
   function financial(x) {
@@ -21,10 +24,11 @@ function MealCard(item) {
 
   const addToCart = () => {
     // find the cart item with the matching id
-    const itemInCart = cart.find((cartItem) => cartItem._id === _id);
+    //const itemInCart = cart.find((cartItem) => cartItem._id === _id);
   
     // if there was a match, call UPDATE with a new purchase quantity
     /// BUT this should add a new meal package with its own servings quantity
+    /*
     if (itemInCart) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
@@ -35,12 +39,14 @@ function MealCard(item) {
         quantity: parseInt(itemInCart.quantity) + 1
       });
     } else {
+        */
+       console.log(item);
       dispatch({
         type: ADD_TO_CART,
-        product: { ...item, quantity: 1 }
+        product: { ...item, quantity: qty }
       });
-      idbPromise('cart', 'put', { ...item, quantity: 1 });
-    }
+      idbPromise('cart', 'put', { ...item, quantity: qty });
+   // }
   };
 
   return (
@@ -61,7 +67,7 @@ function MealCard(item) {
                 <strong>Ingredients:</strong>
               <ul className="d-flex flex-column flex-wrap" style={{ height:"6rem", paddingLeft:0}}>
                 {ingredients.map((item) => (
-                    <li>{item}</li>
+                    <li key={item}>{item}</li>
                 ))}
               </ul>
             </span>
@@ -71,11 +77,11 @@ function MealCard(item) {
           <input style={{width:"2.1rem", padding:0, paddingLeft:".2rem"}}
             type="number"
             placeholder="1"
-            value={quantity}
+            value={qty}
             onChange={onChange}
           />
         </span>
-        <span style={{paddingRight:"2rem"}}><h5 style={{display:"inline"}}>Price: ${financial(price)}</h5> </span>
+        <span style={{paddingRight:"2rem"}}><h5 style={{display:"inline"}}>Price: ${financial(price*qty)}</h5> </span>
       </div>
       <button onClick={addToCart}>Add To Box</button>
     </div>
