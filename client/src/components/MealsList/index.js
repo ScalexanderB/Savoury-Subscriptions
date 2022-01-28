@@ -18,9 +18,6 @@ function MealsList() {
   let { loading, data } = useQuery(QUERY_MEALS);
   
   useEffect(() => {
-    // add hardcoded meals data from state for testing
-    //data = {meals: state.meals}
-    /*********************** */
     // if there's data to be stored
     if (data) {
       // let's store it in the global state object
@@ -46,15 +43,14 @@ function MealsList() {
       }
     }, [data, loading, dispatch]);
   
-  function filterMeals() {  /// 111 is the 'None' Category
-    if (!currentCategory || currentCategory ===  (state.categories.find( cat =>  cat.name === "All" ? currentCategory : false)._id)) {
-      return state.meals;
-    }
-
-    return state.meals.filter(meal =>  
-        meal.category.find( id =>  id._id === currentCategory )
-      );
-    }
+  function filterMeals() { 
+      // if no category or the all category is selected
+      if (!currentCategory || currentCategory ===  (state.categories.find( cat =>  cat.name === "All" ? currentCategory : false)._id)) {
+        return state.meals;
+      }
+        // go through all meals and then through all categories in that meal to see if it matches the current category
+      return state.meals.filter(meal =>  meal.category.find(id =>  id._id === currentCategory));
+  }
 
   return (
     <div className="my-2">
@@ -75,7 +71,7 @@ function MealsList() {
       ) : (
         <h3>You haven't added any meals to the database yet!</h3>
       )}
-      {loading ? <img src={spinner} alt="loading" /> : null}
+      {loading ? <div className='flex-row justify-center'><img src={spinner} alt="loading" /></div> : null}
     </div>
   );
 }
