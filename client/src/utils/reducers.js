@@ -8,8 +8,7 @@ import {
     ADD_MULTIPLE_TO_CART,
     REMOVE_FROM_CART,
     UPDATE_CART_QUANTITY,
-    CLEAR_CART,
-    TOGGLE_CART
+    CLEAR_CART
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -74,12 +73,6 @@ export const reducer = (state, action) => {
                 ...state,
                 cartOpen: false,
                 cart: []
-            };
-
-        case TOGGLE_CART:
-            return {
-                ...state,
-                cartOpen: !state.cartOpen
             };
 
         default:
