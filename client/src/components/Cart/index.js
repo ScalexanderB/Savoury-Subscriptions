@@ -5,7 +5,7 @@ import Auth from '../../utils/auth';
 import './style.css';
 
 import { useStoreContext } from '../../utils/GlobalState';
-import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
+import { ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 
 import { useLazyQuery } from '@apollo/client';
@@ -40,11 +40,6 @@ const Cart = () => {
     }
   }, [state.cart.length, dispatch]);
   
-
-  function toggleCart() {
-    dispatch({ type: TOGGLE_CART });
-  }
-
   function calculateTotal() {
     let sum = 0;
     state.cart.forEach(item => {
@@ -58,13 +53,10 @@ const Cart = () => {
     const mealQtys = [];
   
     state.cart.forEach((item) => {
-      //console.log(item);
-      //for (let i = 0; i < item.quantity; i++) {
         mealIds.push(item._id);
         mealQtys.push(item.quantity);
-     //}
     });
-    
+    // can we just send the cart object as an array of meals?
     getCheckout({
       variables: { meals: mealIds, qtys: mealQtys }
     });
@@ -72,8 +64,10 @@ const Cart = () => {
 
   return (
 <>
-<div className="cart-closed" onClick={toggleCart}>
-      <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#popUpShoppingCart" aria-controls="popUpShoppingCart">{state.cart.length} Meals in Box</button>
+<div className="cart-button">
+      <button className="cart-button-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#popUpShoppingCart" aria-controls="popUpShoppingCart">
+        <span className="cart-button-info-count">{state.cart.length}</span> Meals
+      </button>
 </div>
 
 <div className="offcanvas offcanvas-bottom" data-bs-scroll="true" tabIndex="-1" id="popUpShoppingCart" aria-labelledby="popUpShoppingCartLabel" style={{height:"20rem"}}>

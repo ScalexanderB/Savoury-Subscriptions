@@ -1,37 +1,4 @@
-.cart {
-    position: fixed;
-    top: 0;
-    right: 0;
-    min-width: 20%;
-    max-width: 30%;
-    max-height: 60%;
-    background-color: var(--light);
-    overflow: auto;
-    padding: .5rem;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, .5);
-    border-bottom-left-radius: .5rem;
-}
-
-.cart h2 {
-    font-size: 1.5rem;
-    border-bottom: 1px solid var(--dark);
-    padding-bottom: .5rem;
-    margin: 1rem 0;
-}
-
-.cart .close {
-    position: absolute;
-    top: .5rem;
-    right: .5rem;
-    cursor: pointer;
-    color: var(--tertiary);
-}
-
-.cart .close:hover {
-    text-decoration: underline;
-}
-
-.cart-closed {
+.cart-button {
     z-index: 5;
     position: fixed;
     top: .2rem;
@@ -40,25 +7,29 @@
     cursor: pointer;
     background-color: var(--secondary);
     border-radius: 50%;
-    padding: .25rem;
-    padding-left: .5rem;
     width: 50px;
     height: 50px;
+    background-image: url(https://www.svgrepo.com/show/28743/box.svg);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 60%;
 }
 
-.cart-closed:hover {
+.cart-button:hover {
     transform: rotate(8deg);
 }
 
-.cart img {
-    width: 70px;
-    margin-right: 1rem;
+.cart-button-info {
+    color: var(--light);
+    background-color: transparent;
+    position: relative;
+    top: -1rem;
+    margin-left: -.8rem;
+    line-height: .9rem;
 }
 
-.cart input {
-    width: 50px;
-    padding: 0;
-    margin: 0 .5rem 1rem 0;
+.cart-button-info-count {
+    color: var(--tertiary);
 }
 
 .mealCost {
