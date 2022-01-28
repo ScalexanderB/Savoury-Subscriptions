@@ -6,7 +6,7 @@ db.once('open', async() => {
     await Category.deleteMany();
 
     const categories = await Category.insertMany([
-        { name: 'None' },
+        { name: 'All' },
         { name: 'Vegetarian' },
         { name: 'Dairy Free' },
         { name: 'Gluten Free' },
@@ -14,7 +14,7 @@ db.once('open', async() => {
         { name: 'Vegan' },
         { name: 'Halal' },
         { name: 'Kosher' },
-        { name: 'Favourite' }
+        { name: 'Favourites' }
     ]);
 
     console.log('categories seeded');
