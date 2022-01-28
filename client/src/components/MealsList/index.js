@@ -47,16 +47,13 @@ function MealsList() {
     }, [data, loading, dispatch]);
   
   function filterMeals() {  /// 111 is the 'None' Category
-    if (!currentCategory || currentCategory ===  (state.categories.find( cat =>  cat.name === "None" ? currentCategory : false)._id)) {
+    if (!currentCategory || currentCategory ===  (state.categories.find( cat =>  cat.name === "All" ? currentCategory : false)._id)) {
       return state.meals;
     }
 
     return state.meals.filter(meal =>  
-        meal.category.find( id =>  {
-          if (id._id == currentCategory)console.dir(id._id + '==' + currentCategory);
-                return id._id == currentCategory
-              } )
-        );
+        meal.category.find( id =>  id._id === currentCategory )
+      );
     }
 
   return (
