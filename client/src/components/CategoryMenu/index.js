@@ -15,7 +15,7 @@ function CategoryMenu() {
   
   useEffect(() => {
     // add hardcoded category data from state for testing
-    categoryData = {categories}
+   // categoryData = {categories}
     /*********************** */
 
     // if categoryData exists or has changed from the response of useQuery, then run dispatch()

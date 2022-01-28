@@ -5,24 +5,16 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
 function MyProfile() {
-  // const { data } = useQuery(QUERY_USER);
-  // let user;
+   const { data, loading } = useQuery(QUERY_USER);
+   let user;
 
-  // if (data) {
-  //   user = data.user;
-  // }
+   if (data) {
+     user = data.user;
+   }
 
-  let user = {
-    _id: '1a2b3c',
-    firstName:'Test',
-    lastName: 'User',
-    email: 'testuser@email.com',
-    subscriptions: []
-  };
-
-  // if (loading) {
-  //   return <div>loading...</div>
-  // }
+   if (loading) {
+     return <div>loading...</div>
+   }
 
   return (
     <>
@@ -39,9 +31,9 @@ function MyProfile() {
               </div>
             </div>
 
-            {user.subscriptions.length ? (
+            {user.subscription.length ? (
               <div className="flex-row">
-                {user.subscriptions.map((subscription) => (
+                {user.subscription.map((subscription) => (
                   <div key={subscription._id} className="my-2">
                     <h3>
                       {new Date(parseInt(subscription.purchaseDate)).toLocaleDateString()}

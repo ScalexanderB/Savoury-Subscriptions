@@ -19,7 +19,7 @@ function MealsList() {
   
   useEffect(() => {
     // add hardcoded meals data from state for testing
-    data = {meals: state.meals}
+    //data = {meals: state.meals}
     /*********************** */
     // if there's data to be stored
     if (data) {
@@ -47,7 +47,7 @@ function MealsList() {
     }, [data, loading, dispatch]);
   
   function filterMeals() {  /// 111 is the 'None' Category
-    if (!currentCategory || currentCategory == '101') {
+    if (!currentCategory || currentCategory === '101') {
       return state.meals;
     }
   
