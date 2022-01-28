@@ -15,7 +15,7 @@ export const QUERY_MEALS = gql `
     meals(category: $category) {
       _id
       name
-      ingredient
+      ingredients
       price
       image
       category {
@@ -55,7 +55,7 @@ export const QUERY_USER = gql `
       firstName
       lastName
       email
-      subscriptions {
+      subscription {
         _id
         purchaseDate
         meals {

@@ -59,6 +59,7 @@ function MyProfile() {
                           <div><span>quantity: {subscription.quantities[index]}</span></div>
                         </div>
                       ))}
+
                     </div>
                 ))}
               </div>

@@ -119,12 +119,13 @@ const StoreProvider = ({ value = [], ...props }) => {
         cart: [],
         cartOpen: false,
         //once API is functioning replace categories with an empty array 
+      
         categories: [{ name: 'All', _id: "101" },
             { name: 'Vegetarian', _id: "111" },
             { name: 'Dairy Free', _id: "222" },
             { name: 'Gluten Free', _id: "333" },
             { name: 'Nut Free', _id: "444" },
-            { name: 'Vegen', _id: "555" },
+            { name: 'Vegan', _id: "555" },
             { name: 'Halal', _id: "666" },
             { name: 'Kosher', _id: "777" },
             { name: 'Favourites', _id: "888" },

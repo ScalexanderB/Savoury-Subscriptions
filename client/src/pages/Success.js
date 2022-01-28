@@ -1,35 +1,35 @@
 import React, { useEffect } from 'react';
 import { useMutation } from '@apollo/client';
-import {ADD_ORDER} from '../utils/mutations'
+import {ADD_SUBSCRIPTION} from '../utils/mutations'
 import { idbPromise } from '../utils/helpers';
 import Header from '../components/Header';
 
 function Success() {
-    const [addOrder] = useMutation(ADD_ORDER);
+    const [addSubscription] = useMutation(ADD_SUBSCRIPTION);
 
     useEffect(() => {
-    async function saveOrder() {
+    async function saveSubscription() {
         const cart = await idbPromise('cart', 'get');
         const meals = cart.map(item => item._id);
         const quantities = cart.map(item => item.quantity);
 
         if (meals.length) {
-            const { data } = await addOrder({ variables: { meals, quantities } });
-            const productData = data.addOrder.meals;
+            const { data } = await addSubscription({ variables: { meals, quantities } });
+            const mealData = data.addSubscription.meals;
           
-            productData.forEach((item) => {
+            mealData.forEach((item) => {
               idbPromise('cart', 'delete', item);
             });
           }
     }
 
-    saveOrder();
+    saveSubscription();
 
     setTimeout(() => {
         window.location.assign('/');
     }, 3000);
 
-    }, [addOrder]);
+    }, [addSubscription]);
 
     return (
       <div>

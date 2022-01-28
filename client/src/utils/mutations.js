@@ -11,14 +11,14 @@ export const LOGIN = gql `
   }
 `;
 
-export const ADD_ORDER = gql `
-  mutation addOrder($products: [ID]!, $quantities: [Int]!) {
-    addOrder(products: $products, quantities: $quantities) {
+export const ADD_SUBSCRIPTION = gql `
+  mutation addSubscription($meals: [ID]!, $quantities: [Int]!) {
+    addSubscription(meals: $meals, quantities: $quantities) {
       purchaseDate
-      products {
+      meals {
         _id
         name
-        description
+        ingredients
         price
         quantity
         category {
@@ -50,3 +50,11 @@ export const ADD_USER = gql `
     }
   }
 `;
+
+// export const UPDATE_USER = gql `
+//   mutation updateUser(
+//     $firstName: String!
+//     $lastName: String!
+    
+//   )
+// `
