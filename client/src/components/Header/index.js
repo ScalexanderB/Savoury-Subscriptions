@@ -1,10 +1,17 @@
 import React from "react";
+import '../../pages/style.css';
 
 function Header(){
     return(
-        <div>
-            I am A HEADER / JUMBOTRON
+      <section className='hero'>
+        <div className="maskbox">
+          <div className="mask opacity-1">
+              Savour the flavour.
+              <p></p>
+              And your bank account.
+          </div>
         </div>
+      </section>
     )
 };
 

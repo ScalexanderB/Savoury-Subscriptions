@@ -2,29 +2,31 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './style.css';
 
-import Header from "../components/Header"
+import Header from "../components/Header";
 
 const Home = () => {
 
   return (
-    <div className="container">
+    <div>
       <Header />
     
-      <div className="bigBannerBlock">
+      <section className='home-section p-3'>
         <Link to="/meals">
           <span>Add Meals NOW!!</span>
         </Link>
-      </div>
+      </section>
     
-      <div className="bigBannerBlock">
+      <section className='home-section p-3'>
         <span>About Us!</span>
-      </div>
+      </section>
 
-      <div className="bigBannerBlock">
+      <section className='home-section p-3'>
         <span>🤘 Let's Get Savory!! 🤘</span>
-      </div>
+      </section>
 
     </div>
+  
+    
   );
 };
 
