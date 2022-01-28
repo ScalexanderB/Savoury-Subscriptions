@@ -65,6 +65,7 @@ function MealsList() {
               name={meal.name}
               price={meal.price}
               ingredients={meal.ingredients}
+              category={meal.category}
             />
           ))}
         </div>

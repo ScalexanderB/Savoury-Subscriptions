@@ -1,7 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Meal, Category } = require('../models');
+const { User, Subscription, Meal, Category } = require('../models');
 const { signToken } = require('../utils/auth');
-//const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
     Query: {
@@ -53,23 +53,28 @@ const resolvers = {
             throw new AuthenticationError('Not logged in.');
         },
         checkout: async(parent, args, context) => {
+            console.log("########### NEW CHECKOUT ############");
+
             const url = new URL(context.headers.referer).origin;
-            const subscription = new Subscription({ mealss: args.meals });
+            const subscription = new Subscription({ meals: args.meals });
             const line_items = [];
 
-            const { meals } = await subscription.populate('meals').execPopulate();
+            const order = await subscription.populate('meals').execPopulate();
+
+            console.log(order);
+            const { meals } = args;
 
             for (let i = 0; i < meals.length; i++) {
-                const product = await stripe.meals.create({
+                const product = await stripe.products.create({
                     name: meals[i].name,
-                    ingredients: meals[i].description,
-                    images: [`${url}/images/${meals[i].image}`]
+                    description: `Meal for ${meals[i].quantity}`,
+                    images: [`${url}/images/${meals.image}`]
                 });
 
                 const price = await stripe.prices.create({
-                    meal: meal.id,
-                    unit_amount: meals[i].price * 100,
-                    currency: 'usd',
+                    product: product.id,
+                    unit_amount: meals[i].price * meals[i].quantity * 100,
+                    currency: 'cad',
                 });
 
                 line_items.push({
@@ -98,7 +103,6 @@ const resolvers = {
             return { token, user };
         },
         addSubscription: async(parent, { meals }, context) => {
-            console.log(context);
             if (context.user) {
                 const subscription = new Subscription({ meals });
 

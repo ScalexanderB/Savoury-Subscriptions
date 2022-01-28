@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 // will generate a checkout session with stripe
 export const QUERY_CHECKOUT = gql `
-  query getCheckout($meals: [Meal]!) {
+  query getCheckout($meals: [MealInput]!) {
     checkout(meals: $meals) {
       session
     }

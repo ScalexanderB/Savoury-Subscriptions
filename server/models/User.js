@@ -8,7 +8,6 @@ const SubscriptionSchema = new Schema({
     },
     purchaseDate: {
         type: Date,
-        required: true,
         default: Date.now
     },
     categories: [{
@@ -60,7 +59,7 @@ UserSchema.methods.isCorrectPassword = async function(password) {
     return await bcrypt.compare(password, this.password);
 };
 
-
 const User = model('User', UserSchema);
+const Subscription = model('Subscription', SubscriptionSchema);
 
-module.exports = User;
+module.exports = { User, Subscription };

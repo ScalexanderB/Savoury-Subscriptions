@@ -41,7 +41,6 @@ function MealCard(item) {
         meal: { ...item, quantity: qty }
       });
       idbPromise('cart', 'put', { ...item, quantity: qty, _id: Date.now() });
-
   };
 
   return (

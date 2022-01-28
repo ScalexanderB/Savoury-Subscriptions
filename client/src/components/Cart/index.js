@@ -48,16 +48,25 @@ const Cart = () => {
   }
 
   function submitCheckout() {
-    const mealIds = [];
-    const mealQtys = [];
-  
-    state.cart.forEach((item) => {
-        mealIds.push(item._id);
-        mealQtys.push(item.quantity);
-    });
+   
     // can we just send the cart object as an array of meals?
+    // NO - we need to massage the data
+    const meals = state.cart.map(meal => {
+      return {
+        _id: meal._id,
+        name: meal.name,
+        image: meal.image,
+        ingredients: meal.ingredients,
+        category: meal.category.map(id => id._id),
+        quantity: parseInt(meal.quantity),
+        price: parseFloat(meal.price)
+      }
+    });
+
+    console.log(meals);
+
     getCheckout({
-      variables: { meals: mealIds, qtys: mealQtys }
+      variables: { meals }
     });
   }
 

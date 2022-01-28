@@ -12,20 +12,18 @@ export const LOGIN = gql `
 `;
 
 export const ADD_SUBSCRIPTION = gql `
-  mutation addSubscription($meals: [ID]!, $quantities: [Int]!) {
-    addSubscription(meals: $meals, quantities: $quantities) {
+  mutation addSubscription($meals: [MealInput]!) {
+    addSubscription(meals: $meals) {
       purchaseDate
       meals {
         _id
         name
-        ingredients
         price
         quantity
         category {
           name
         }
       }
-      quantities
     }
   }
 `;
@@ -55,6 +53,6 @@ export const ADD_USER = gql `
 //   mutation updateUser(
 //     $firstName: String!
 //     $lastName: String!
-    
+
 //   )
 // `
