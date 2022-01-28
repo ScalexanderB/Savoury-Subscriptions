@@ -27,7 +27,6 @@ const Cart = () => {
     }
   }, [data]);
 
-  
   // for cart items
   useEffect(() => {
     async function getCart() {
