@@ -124,23 +124,32 @@ db.once('open', async () => {
   await User.deleteMany();
 
   await User.create({
-    firstName: 'Pamela',
-    lastName: 'Washington',
-    email: 'pamela@testmail.com',
-    password: 'password12345',
-    subscriptions: [
-      {
-        meals: [meals[0]._id, meals[0]._id, meals[1]._id]
-      }
-    ]
-  });
+    firstName: 'Sam',
+    lastName: 'Savoury',
+    email: 'sam@email.com',
+    password: 'pass123'
+});
 
   await User.create({
-    firstName: 'Elijah',
-    lastName: 'Holt',
-    email: 'eholt@testmail.com',
-    password: 'password12345'
-  });
+    firstName: 'Scott',
+    lastname: 'Savoury',
+    email: 'scott@email.com',
+    password: 'pass321'
+});
+
+  await User.create({
+    firstName: 'Jasmine',
+    lastName: 'Savoury',
+    email: 'jasmine@email.com',
+    password: 'password123'
+});
+
+  await User.create({
+    firstName: 'Dave',
+    lastName: 'Savoury',
+    email: 'dave@email.com',
+    password: 'password321'
+});
 
   console.log('users seeded');
 

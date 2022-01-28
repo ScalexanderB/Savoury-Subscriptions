@@ -23,7 +23,7 @@ function MyProfile() {
             <h2>
               Subscription list for {user.firstName} {user.lastName}
             </h2>
-            {user.subscriptions.map((subscription) => (
+            {user.subscription.map((subscription) => (
               <div key={subscription._id} className="my-2">
                 <h3>
                   {new Date(parseInt(subscription.purchaseDate)).toLocaleDateString()}

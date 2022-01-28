@@ -29,7 +29,7 @@ const resolvers = {
         user: async (parent, args, context) => {
             if (context.user) {
                 const user = await User.findById(context.user._id).populate({
-                    path: 'subscriptions.meals',
+                    path: 'subscription.meals',
                     populate: 'category'
                 });
 
@@ -43,11 +43,11 @@ const resolvers = {
         subscription: async (parent, { _id }, context) => {
             if (context.user) {
                 const user = await User.findById(context.user._id).populate({
-                    path: 'subscriptions.meals',
+                    path: 'subscription.meals',
                     populate: 'category'
                 });
 
-                return user.subscriptions.id(_id);
+                return user.subscription.id(_id);
             }
 
             throw new AuthenticationError('Not logged in.');
@@ -102,7 +102,7 @@ const resolvers = {
             if (context.user) {
                 const subscription = new Subscription({ meals });
 
-                await User.findByIdAndUpdate(context.user._id, { $push: { subscriptions: subscription }});
+                await User.findByIdAndUpdate(context.user._id, { $push: { subscription: subscription }});
 
                 return subscription;
             }
