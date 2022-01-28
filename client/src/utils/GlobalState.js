@@ -123,7 +123,7 @@ const StoreProvider = ({ value = [], ...props }) => {
             { name: 'Dairy Free', _id: "333" },
             { name: 'Gluten Free', _id: "444" },
             { name: 'Nut Free', _id: "555" },
-            { name: 'Vegen', _id: "666" },
+            { name: 'Vegan', _id: "666" },
             { name: 'Halal', _id: "777" },
             { name: 'Kosher', _id: "888" },
             { name: 'Favourite', _id: "999" },
