@@ -83,7 +83,7 @@ const Cart = () => {
         <CartItem key={item._id+"-"+index} item={item} />
       ))}
       </div>
-      <div className="flex-row space-between">
+      <div className="flex-row justify-space-between">
         <strong>Total: ${calculateTotal()}</strong>
         {
           Auth.loggedIn() ?

@@ -53,6 +53,10 @@
     margin: .2rem 0;
 }
 
+.categoryScrollBox button {
+    white-space: nowrap;
+}
+
 .offcanvas-header {
     padding-bottom: 0;
 }
