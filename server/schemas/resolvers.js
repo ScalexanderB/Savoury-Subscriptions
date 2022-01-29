@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Subscription, Meal, Category } = require('../models');
 const { signToken } = require('../utils/auth');
@@ -121,17 +122,35 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in.');
         },
+        removeSubscription: async(parent, { id }, context) => {
+
+            console.log(id);
+            const data = await User.findByIdAndUpdate(context.user._id, {
+                $pull: {
+                    subscription: [{ _id: { $toObjectId: id } }]
+                }
+            });
+            //{ $pullAll: { scores: [ 0, 5 ] } } )
+            console.dir(data.subscription[0]._id);
+            console.dir(mongoose.Types.ObjectId(id));
+            if (data.subscription[0]._id === mongoose.Types.ObjectId(id)) {
+                console.log("Match!!!!");
+            }
+
+
+            return data;
+        },
         removeAllUserSubscriptions: async(parent, args, context) => {
             const data = await User.findByIdAndUpdate(context.user._id, { $set: { subscription: [] } });
             return data;
         },
-        // updateUser: async (parent, args, context) => {
-        //     if (context.user) {
-        //         return await User.findByIdAndUpdate(context.user._id, args, { new: true });
-        //     }
+        updateUser: async(parent, args, context) => {
+            if (context.user) {
+                return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+            }
 
-        //     throw new AuthenticationError('Not logged in.');
-        // },
+            throw new AuthenticationError('Not logged in.');
+        },
         // updateMeal: async (parent, { _id, quantity }) => {
         //     const decrement = Math.abs(quantity) * -1;
 

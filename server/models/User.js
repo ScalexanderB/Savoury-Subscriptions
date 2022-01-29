@@ -39,7 +39,11 @@ const UserSchema = new Schema({
         required: true,
         minlength: 5
     },
-    subscription: [SubscriptionSchema]
+    subscription: [SubscriptionSchema],
+    addressLine: [{ type: String }],
+    province: { type: String },
+    postalCode: { type: String },
+
 });
 
 // set up pre-save middleware to create password

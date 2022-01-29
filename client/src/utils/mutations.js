@@ -52,10 +52,41 @@ export const ADD_USER = gql `
   }
 `;
 
-// export const UPDATE_USER = gql `
-//   mutation updateUser(
-//     $firstName: String!
-//     $lastName: String!
-
-//   )
-// `
+export const UPDATE_USER = gql `
+   mutation updateUser(
+        $firstName: String
+        $lastName: String
+        $email: String
+        $addressLine: [String]
+        $province: String
+        $postalCode: String
+   ){
+     updateUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      addressLine: $addressLine
+      province: $province
+      postalCode: $postalCode
+       ){
+          firstName
+          lastName
+          email
+          addressLine
+          province
+          postalCode
+          subscription {
+            _id
+            purchaseDate
+            meals {
+              _id
+              name
+              ingredients
+              price
+              quantity
+              image
+            }
+          }
+       }
+   }
+ `
