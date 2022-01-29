@@ -1,4 +1,4 @@
-const Meal = require('./Meal');
+const { Meal } = require('./Meal');
 const Category = require('./Category');
 const { User, Subscription } = require('./User');
 

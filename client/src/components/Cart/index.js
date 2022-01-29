@@ -53,7 +53,7 @@ const Cart = () => {
     // NO - we need to massage the data
     const meals = state.cart.map(meal => {
       return {
-        _id: meal._id,
+        cartId: meal._id,
         name: meal.name,
         image: meal.image,
         ingredients: meal.ingredients,

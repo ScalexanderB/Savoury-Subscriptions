@@ -52,16 +52,17 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in.');
         },
+        allSubs: async(parent, args, context) => await Subscription.find({}),
         checkout: async(parent, args, context) => {
             console.log("########### NEW CHECKOUT ############");
 
             const url = new URL(context.headers.referer).origin;
-            const subscription = new Subscription({ meals: args.meals });
+            //const subscription = new Subscription({ meals: args.meals, categories: ["Test", "Category"] });
             const line_items = [];
 
-            const order = await subscription.populate('meals').execPopulate();
+            // const order = await subscription.populate('meals').execPopulate();
 
-            console.log(order);
+            //console.log(order);
             const { meals } = args;
 
             for (let i = 0; i < meals.length; i++) {
@@ -88,9 +89,10 @@ const resolvers = {
                 line_items,
                 mode: 'payment',
                 success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-                cancel_url: `${url}/`
+                cancel_url: `${url}/404`
             });
 
+            console.log(`Session ID: ${session.id}`)
             return { session: session.id };
         }
     },
@@ -102,16 +104,26 @@ const resolvers = {
 
             return { token, user };
         },
-        addSubscription: async(parent, { meals }, context) => {
-            if (context.user) {
-                const subscription = new Subscription({ meals });
+        addSubscription: async(parent, { meals, categories }, context) => {
+            console.log("++++++++++ PAYMENT SUCCESS +++++++++++++");
+            console.log(`Adding Subscription to ${context.user.firstName}`);
+            //console.log(categories);
+            //console.log(meals);
 
-                await User.findByIdAndUpdate(context.user._id, { $push: { subscription: subscription } });
+            if (context.user) {
+                const subscription = new Subscription({ meals, categories });
+
+                const data = await User.findByIdAndUpdate(context.user._id, { $push: { subscription: subscription } });
+                //console.log(data);
 
                 return subscription;
             }
 
             throw new AuthenticationError('Not logged in.');
+        },
+        removeAllUserSubscriptions: async(parent, args, context) => {
+            const data = await User.findByIdAndUpdate(context.user._id, { $set: { subscription: [] } });
+            return data;
         },
         // updateUser: async (parent, args, context) => {
         //     if (context.user) {

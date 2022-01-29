@@ -12,16 +12,19 @@ export const LOGIN = gql `
 `;
 
 export const ADD_SUBSCRIPTION = gql `
-  mutation addSubscription($meals: [MealInput]!) {
-    addSubscription(meals: $meals) {
+  mutation addSubscription($meals: [MealInput]!, $categories: [ID] ) {
+    addSubscription(meals: $meals, categories: $categories) {
       purchaseDate
-      meals {
+      categories {
         _id
+      }
+      meals {
+        cartId
         name
         price
         quantity
         category {
-          name
+          _id
         }
       }
     }

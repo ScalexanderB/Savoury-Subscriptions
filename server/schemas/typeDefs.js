@@ -16,6 +16,7 @@ const typeDefs = gql `
 
   type Meal {
       _id: ID
+      cartId: ID
       name: String
       image: String
       category: [Category]
@@ -28,7 +29,7 @@ const typeDefs = gql `
       _id: ID
       purchaseDate: String
       meals: [Meal]
-      category: [Category]
+      categories: [Category]
   }
 
   type Checkout {
@@ -41,7 +42,7 @@ const typeDefs = gql `
   }
 
   input MealInput {
-      _id: ID
+      cartId: ID
       name: String
       image: String
       ingredients: [String]
@@ -56,12 +57,14 @@ const typeDefs = gql `
       meal(_id: ID!): Meal
       user: User
       subscription(_id: ID!): Subscription
+      allSubs: [Subscription]
       checkout(meals: [MealInput]!): Checkout
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addSubscription(meals: [MealInput]!): Subscription
+    addSubscription(meals: [MealInput]!, categories: [ID]): Subscription
+    removeAllUserSubscriptions: User
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateMeal(_id: ID!, quantity: Int!): Meal
     login(email: String!, password: String!): Auth

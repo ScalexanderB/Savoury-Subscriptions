@@ -1,4 +1,5 @@
 const { Schema, model, Types } = require('mongoose');
+const { MealSchema } = require('./Meal');
 const bcrypt = require('bcrypt');
 
 const SubscriptionSchema = new Schema({
@@ -14,10 +15,7 @@ const SubscriptionSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Category'
     }],
-    meals: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Meal'
-    }]
+    meals: [MealSchema]
 });
 
 const UserSchema = new Schema({
