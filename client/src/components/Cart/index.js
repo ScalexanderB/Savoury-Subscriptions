@@ -48,7 +48,6 @@ const Cart = () => {
   }
 
   function submitCheckout() {
-   
     // can we just send the cart object as an array of meals?
     // NO - we need to massage the data
     const meals = state.cart.map(meal => {
@@ -63,7 +62,7 @@ const Cart = () => {
       }
     });
 
-    console.log(meals);
+    //console.log(meals);
 
     getCheckout({
       variables: { meals }
