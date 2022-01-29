@@ -123,20 +123,7 @@ const resolvers = {
             throw new AuthenticationError('Not logged in.');
         },
         removeSubscription: async(parent, { id }, context) => {
-
-            console.log(id);
-            const data = await User.findByIdAndUpdate(context.user._id, {
-                $pull: {
-                    subscription: [{ _id: { $toObjectId: id } }]
-                }
-            });
-            //{ $pullAll: { scores: [ 0, 5 ] } } )
-            console.dir(data.subscription[0]._id);
-            console.dir(mongoose.Types.ObjectId(id));
-            if (data.subscription[0]._id === mongoose.Types.ObjectId(id)) {
-                console.log("Match!!!!");
-            }
-
+            const data = await User.findByIdAndUpdate(context.user._id, { $pull: { 'subscription': { '_id': id } } }, { new: true });
 
             return data;
         },
