@@ -55,7 +55,8 @@ h6 {
     font-weight: 500;
     margin: 5px 0;
     line-height: 1.25;
-    color: rgba(0, 0, 0, .5)
+    /* color: rgba(0, 0, 0, .5)*/
+    /* I am not a fan of the 50% see through headings - dave*/
 }
 
 h1 {

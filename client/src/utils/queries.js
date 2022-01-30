@@ -56,6 +56,7 @@ export const QUERY_USER = gql `
       lastName
       email
       addressLine
+      city
       province
       postalCode
       subscription {

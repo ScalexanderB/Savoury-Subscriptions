@@ -24,9 +24,7 @@ const Home = () => {
         <span>🤘 Let's Get Savoury!! 🤘</span>
       </section>
 
-    </div>
-  
-    
+    </div>    
   );
 };
 

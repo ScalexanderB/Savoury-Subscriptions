@@ -41,6 +41,7 @@ const UserSchema = new Schema({
     },
     subscription: [SubscriptionSchema],
     addressLine: [{ type: String }],
+    city: { type: String },
     province: { type: String },
     postalCode: { type: String },
 

@@ -13,6 +13,7 @@ const typeDefs = gql `
      email: String
      subscription: [Subscription]
      addressLine:[String]
+     city: String
      province: String
      postalCode: String
   }
@@ -69,7 +70,7 @@ const typeDefs = gql `
     addSubscription(meals: [MealInput]!, categories: [ID]): Subscription
     removeSubscription(id: ID!): User
     removeAllUserSubscriptions: User
-    updateUser(firstName: String, lastName: String, email: String, addressLine: [String], province: String, postalCode: String,): User
+    updateUser(firstName: String, lastName: String, email: String, addressLine: [String], city: String, province: String, postalCode: String,): User
     updateMeal(_id: ID!, quantity: Int!): Meal
     login(email: String!, password: String!): Auth
   }
