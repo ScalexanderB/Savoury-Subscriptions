@@ -21,7 +21,7 @@ const Home = () => {
       </section>
 
       <section className='home-section p-3'>
-        <span>🤘 Let's Get Savory!! 🤘</span>
+        <span>🤘 Let's Get Savoury!! 🤘</span>
       </section>
 
     </div>
