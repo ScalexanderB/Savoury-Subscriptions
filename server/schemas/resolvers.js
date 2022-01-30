@@ -122,8 +122,20 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in.');
         },
+        addToFavs: async(parent, { id }, context) => {
+            if (context.user) {
+                const data = await User.findByIdAndUpdate(context.user._id, { $addToSet: { favMeals: id } }, { new: true });
+                return data;
+            }
+            throw new AuthenticationError('Not logged in.');
+        },
         removeUser: async(parent, { id }, context) => {
             const data = await User.findOneAndDelete({ _id: id });
+            return data;
+        },
+        removeFav: async(parent, { id }, context) => {
+            const data = await User.findByIdAndUpdate(context.user._id, { $pull: { 'favMeals': id } }, { new: true });
+
             return data;
         },
         removeSubscription: async(parent, { id }, context) => {

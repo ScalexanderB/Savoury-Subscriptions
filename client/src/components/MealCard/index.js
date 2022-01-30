@@ -3,11 +3,15 @@ import React, { useState } from "react";
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_TO_CART } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
+import { ADD_FAV_MEAL } from "../../utils/mutations";
+import { useMutation } from '@apollo/client';
 
 function MealCard(item) {
   const { name, image, ingredients, price } = item;
   const [, dispatch] = useStoreContext();
   //const { cart } = state;
+
+  const [addFav, { error }] = useMutation(ADD_FAV_MEAL);
 
   // for quantity of servings
   const [qty, setQty] = useState(1);
@@ -23,6 +27,18 @@ function MealCard(item) {
   function financial(x) {
     return Number.parseFloat(x).toFixed(2);
   }
+
+  const toggleFavMeal = async () =>{
+    try {
+      const mutationResponse = await addFav({
+        variables: { id: item._id },
+      });
+      console.log(mutationResponse);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
 
   const addToCart = () => {
     /// this should add a new meal package with its own servings quantity
@@ -55,7 +71,7 @@ function MealCard(item) {
       </div>
         <div className="d-flex" style={{justifyContent:"space-between"}}>
           <h3>{name}</h3>
-          <span role="img" aria-label="favourite">
+          <span role="img" aria-label="favourite" onClick={toggleFavMeal} style={{cursor:"pointer"}}>
             ⭐
           </span>
         </div>

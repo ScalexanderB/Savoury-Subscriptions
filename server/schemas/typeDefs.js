@@ -12,6 +12,7 @@ const typeDefs = gql `
      lastName: String
      email: String
      subscription: [Subscription]
+     favMeals: [Meal]
      addressLine:[String]
      city: String
      province: String
@@ -68,6 +69,8 @@ const typeDefs = gql `
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     addSubscription(meals: [MealInput]!, categories: [ID]): Subscription
+    addToFavs(id: ID!): User
+    removeFav(id: ID!): User
     removeUser(id: ID!): User
     removeSubscription(id: ID!): User
     removeAllUserSubscriptions: User

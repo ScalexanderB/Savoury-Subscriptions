@@ -13,12 +13,12 @@
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: 60%;
-    transition: all .32s;
+    transition: all .32s ease;
     border: .1px ridge transparent;
 }
 
 .cart-button:hover {
-    transition: all .32s;
+    transition: all .32s ease;
     width: 4.6rem;
     height: 4.6rem;
     top: .65rem;
@@ -27,7 +27,7 @@
 }
 
 .cart-button:hover .cart-button-info {
-    transition: all .32s;
+    transition: all .32s ease;
     margin-left: -.7rem;
     top: -.7rem;
 }

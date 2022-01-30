@@ -40,6 +40,10 @@ const UserSchema = new Schema({
         minlength: 5
     },
     subscription: [SubscriptionSchema],
+    favMeals: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Meal'
+    }],
     addressLine: [{ type: String }],
     city: { type: String },
     province: { type: String },

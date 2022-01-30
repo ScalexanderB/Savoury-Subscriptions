@@ -93,3 +93,13 @@ export const UPDATE_USER = gql `
        }
    }
  `
+
+export const ADD_FAV_MEAL = gql `
+ mutation addToFavs($id: ID! ) {
+  addToFavs(id: $id) {
+    favMeals{
+      _id
+    }
+  }
+}
+`
