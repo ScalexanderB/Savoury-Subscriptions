@@ -4,7 +4,7 @@ import Auth from '../../utils/auth';
 import { ADD_USER } from '../../utils/mutations';
 
 function Signup(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ firstName: '', lastName: '', email: '', password: '', errMsg:'' });
   const [addUser] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
@@ -16,9 +16,25 @@ function Signup(props) {
         firstName: formState.firstName,
         lastName: formState.lastName,
       },
+    })
+    .catch(err=> {
+       setFormState({     
+          ...formState,
+          'errMsg': "Something went wrong with your signup!"
+       });
     });
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
+   
+    if(mutationResponse){
+      const token = mutationResponse.data.addUser.token;
+      if(token){
+        document.getElementById('SignupClose').click();
+        Auth.firstLogin(token, document.getElementById('SignupPg2'));
+      }
+      else{
+        console.log(mutationResponse);
+      
+      }
+    }
   };
 
   const handleChange = (event) => {
@@ -38,9 +54,9 @@ function Signup(props) {
   <div className="offcanvas offcanvas-top" data-bs-scroll="true" tabIndex="-1" id="popDownSignUp" aria-labelledby="popDownSignUpLabel" style={{height:"23rem"}}>
     <div className="offcanvas-header">
       <h4 className="offcanvas-title centeredForm" id="popDownSignUpLabel">User Signup</h4>
-      <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <button id="SignupClose" type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-  
+
     <div className="offcanvas-body centeredForm">
 
       <button className='loginToggle highlight'  data-bs-dismiss="offcanvas" data-mdb-toggle="offcanvas" data-mdb-target="#popDownLogin"
@@ -90,14 +106,14 @@ function Signup(props) {
         <div className="flex-row flex-end">
           <button className="submit highlight" style={{marginLeft:"77%"}} type="submit">Submit</button>
         </div>
+        {formState.errMsg ? <>
+          <div className="flex-row justify-center" style={{color:"var(--bs-danger)"}}>
+          {formState.errMsg}
+        </div>
+          </> : <></>}
       </form>
-  
-  
     </div>
-  </div>
-  
-  
-  
+  </div>  
     </>
     );
 }

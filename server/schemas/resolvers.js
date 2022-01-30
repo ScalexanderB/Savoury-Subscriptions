@@ -122,13 +122,17 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in.');
         },
+        removeUser: async(parent, { id }, context) => {
+            const data = await User.findOneAndDelete({ _id: id });
+            return data;
+        },
         removeSubscription: async(parent, { id }, context) => {
             const data = await User.findByIdAndUpdate(context.user._id, { $pull: { 'subscription': { '_id': id } } }, { new: true });
 
             return data;
         },
         removeAllUserSubscriptions: async(parent, args, context) => {
-            const data = await User.findByIdAndUpdate(context.user._id, { $set: { subscription: [] } });
+            const data = await User.findByIdAndUpdate(context.user._id, { $set: { subscription: [] } }, { new: true });
             return data;
         },
         updateUser: async(parent, args, context) => {

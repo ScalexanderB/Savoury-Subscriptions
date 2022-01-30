@@ -58,6 +58,7 @@ export const UPDATE_USER = gql `
         $lastName: String
         $email: String
         $addressLine: [String]
+        $city: String
         $province: String
         $postalCode: String
    ){
@@ -66,6 +67,7 @@ export const UPDATE_USER = gql `
       lastName: $lastName
       email: $email
       addressLine: $addressLine
+      city: $city
       province: $province
       postalCode: $postalCode
        ){
@@ -73,6 +75,7 @@ export const UPDATE_USER = gql `
           lastName
           email
           addressLine
+          city
           province
           postalCode
           subscription {

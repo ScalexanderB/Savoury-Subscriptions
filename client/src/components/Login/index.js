@@ -51,7 +51,7 @@ function Login(props) {
             placeholder="your@email.com"
             name="email"
             type="email"
-            id="email"
+            id="lemail"
             onChange={handleChange}
           />
         </div>
@@ -61,7 +61,7 @@ function Login(props) {
             placeholder="********"
             name="password"
             type="password"
-            id="pwd"
+            id="lpwd"
             onChange={handleChange}
           />
         </div>
