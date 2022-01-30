@@ -10,7 +10,7 @@ function Signup2(props) {
     event.preventDefault();
     const mutationResponse = await updateUser({
       variables: {
-        address: [formState.address1,formState.address2],
+        addressLine: [formState.address1,formState.address2],
         city: formState.city,
         province: formState.province,
         postalCode: formState.postalCode
