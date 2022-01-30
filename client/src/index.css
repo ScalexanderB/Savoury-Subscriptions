@@ -28,7 +28,7 @@ body {
     font-family: 'Karla', sans-serif;
     font-weight: 400;
     line-height: 1.5;
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--dark);
 }
 
@@ -138,18 +138,42 @@ button.checkout {
     background-color: var(--bs-success) !important;
 }
 
+button.submit {
+    background-color: var(--bs-primary) !important;
+}
+
 button.highlight:hover {
-    /* opacity: .8; */
-    /*
-    background: radial-gradient(circle, rgba(242, 216, 179, .3) 0%, rgba(216, 167, 167, 0.2) 100%);
-    */
     background: linear-gradient(346deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 44%, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, 0.16) 100%);
     background-position: center;
+}
+
+button.loginToggle {
+    background-color: var(--bs-warning) !important;
 }
 
 button[disabled] {
     cursor: default;
     opacity: .8;
+}
+
+.login-button {
+    padding: 0 var(--spacing-two);
+    color: var(--light);
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0;
+    background-color: transparent;
+    background-position: 0;
+    transition: all 0s;
+}
+
+.login-button:hover {
+    color: #0a58ca;
 }
 
 .card img {
@@ -163,6 +187,10 @@ span[role="img"] {
 
 form {
     width: 40%;
+}
+
+.centeredForm {
+    margin-left: 30%;
 }
 
 input {

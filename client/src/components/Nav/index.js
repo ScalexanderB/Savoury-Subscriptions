@@ -3,78 +3,8 @@ import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import logoImage from '../assets/images/savoury-logo-transparent.png';
 import "../../pages/style.css"
-
-// function Nav() {
-
-//   function showNavigation() {
-//     if (Auth.loggedIn()) {
-//       return (
-//       <div className="navbar nav">
-//         <ul className="flex-row space-between">
-//           <div className="logo">
-//               <Link to="/">
-//                   <img src={logoImage} alt="Savoury Logo"/>
-//               </Link>
-//           </div>
-//           <li className="mx-1">
-//             <Link to="/meals">
-//               Meals
-//             </Link>
-//           </li>
-//           <li className="mx-1">
-//             <Link to="/myprofile">
-//               My Account 
-//             </Link>
-//           </li>
-//           <li className="mx-1">
-//             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-//             <a href="/" onClick={() => Auth.logout()}>
-//               Logout
-//             </a>
-//           </li>
-//         </ul>
-//       </div>  
-//       );
-//     } else {
-//       return (
-//       <div className="navbar">
-//         <ul className="flex-row space-between">
-//           <div className="logo">
-//               <Link to="/">
-//                 <img src={logoImage} alt="Savoury Logo"/>
-//               </Link>
-//           </div> 
-//           <li className="mx-1">
-//             <Link to="/meals">
-//               Meals
-//             </Link>
-//           </li>
-//           <li className="mx-1">
-//             <Link to="/signup">
-//               Signup
-//             </Link>
-//           </li>
-//           <li className="mx-1">
-//             <Link to="/login">
-//               Login
-//             </Link>
-//           </li>
-//         </ul>
-//       </div>
-//       );
-//     }
-//   }
-
-//   return (
-//     <header className="flex-row px-1">
-
-//       <nav>
-//         {showNavigation()}
-//       </nav>
-
-//     </header>
-//   );
-// }
+import Login from "../Login";
+import Signup from "../Signup";
 
 function Nav() {
   return (
@@ -96,11 +26,16 @@ function Nav() {
         ) : (
           <>
             <Link to='/meals'>Meals</Link>
-            <Link to='/signup'>Signup</Link>
-            <Link to='/login'>Login</Link>
+            <button id="SignupButton" className="login-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#popDownSignUp" aria-controls="popDownSignUp">
+              Signup
+            </button>
+            <button id="LoginButton" className="login-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#popDownLogin" aria-controls="popDownLogin">
+              Login
+            </button>
           </>
         )}
       </nav>
+      <Login /> <Signup />
     </header>
   )
 }

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
-import { LOGIN } from '../utils/mutations';
-import Auth from '../utils/auth';
+import { LOGIN } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -29,26 +28,37 @@ function Login(props) {
     });
   };
 
-  return (
-    <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
+  const signupClick = () =>{
+    document.getElementById('SignupButton').click();
+  }
 
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
+  return (
+  <>  
+<div className="offcanvas offcanvas-top" data-bs-scroll="true" tabIndex="-1" id="popDownLogin" aria-labelledby="popDownLoginLabel" style={{height:"20rem"}}>
+  <div className="offcanvas-header">
+    <h4 className="offcanvas-title centeredForm" id="popDownLoginLabel">User Login</h4>
+    <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <div className="offcanvas-body centeredForm">
+    <button className='loginToggle highlight'  data-bs-dismiss="offcanvas" data-mdb-toggle="offcanvas" data-mdb-target="#popDownSignUp"
+  aria-controls="offcanvasExample" onClick={signupClick}>← Go to Signup</button>
+ 
+    <form onSubmit={handleFormSubmit} >
+        <div className="flex-row justify-space-between my-2">
           <label htmlFor="email">Email address:</label>
           <input
-            placeholder="youremail@test.com"
+            placeholder="your@email.com"
             name="email"
             type="email"
             id="email"
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row space-between my-2">
+        <div className="flex-row justify-space-between my-2">
           <label htmlFor="pwd">Password:</label>
           <input
-            placeholder="******"
+            placeholder="********"
             name="password"
             type="password"
             id="pwd"
@@ -61,10 +71,14 @@ function Login(props) {
           </div>
         ) : null}
         <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
+          <button className="submit highlight" style={{marginLeft:"77%"}} type="submit">Submit</button>
         </div>
       </form>
-    </div>
+
+
+  </div>
+</div>
+  </>
   );
 }
 
