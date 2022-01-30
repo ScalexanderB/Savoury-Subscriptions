@@ -85,7 +85,7 @@ function MealCard(item) {
         </span>
         <span style={{paddingRight:"2rem"}}><h5 style={{display:"inline"}}>Price: ${financial(price*qty)}</h5> </span>
       </div>
-      <button onClick={addToCart}>Add To Box</button>
+      <button className='add highlight' onClick={addToCart}>Add To Box</button>
     </div>
   );
 }

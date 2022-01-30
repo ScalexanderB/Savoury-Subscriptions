@@ -8,16 +8,10 @@ import { idbPromise } from '../../utils/helpers';
 function CategoryMenu() {
 
   const [state, dispatch] = useStoreContext();
-
   const { categories } = state;
-    
   let { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
   
   useEffect(() => {
-    // add hardcoded category data from state for testing
-   // categoryData = {categories}
-    /*********************** */
-
     // if categoryData exists or has changed from the response of useQuery, then run dispatch()
     if (categoryData) {
       // execute our dispatch function with our action object indicating the type of action and the data to set our state for categories to
@@ -47,16 +41,24 @@ function CategoryMenu() {
 
   return (
   <div className="categoryScrollBox">
-      {categories.map(item => (
-        <button
-          key={item._id}
-          onClick={() => {
-            handleClick(item._id);
-          }}
-        >
-          {item.name}
-        </button>
-      ))}
+      {categories.map(item => 
+        item._id == state.currentCategory ? 
+           (<button 
+              className="category selected"        
+              key={item._id}
+              onClick={() => { handleClick(item._id); }} >
+            {item.name}
+            </button>
+          )
+          :
+          (<button 
+              className="category"        
+              key={item._id}
+              onClick={() => { handleClick(item._id); }} >
+            {item.name}
+            </button>
+          ) 
+      )}
   </div>
   );
 }

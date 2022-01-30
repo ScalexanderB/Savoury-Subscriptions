@@ -64,7 +64,7 @@ const CartItem = ({ item }) => {
             </div>
         </div>
 
-      <button onClick={() => removeFromCart(item)}>Remove</button>
+      <button className='remove highlight' onClick={() => removeFromCart(item)}>Remove</button>
     </div>
   );
 }
