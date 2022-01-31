@@ -11,6 +11,7 @@ import { idbPromise } from "../../utils/helpers";
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_CHECKOUT } from '../../utils/queries';
 import { loadStripe } from '@stripe/stripe-js';
+
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
@@ -48,6 +49,12 @@ const Cart = () => {
   }
 
   function submitCheckout() {
+    // tell the user we are processing the request
+    let buttonEl = document.getElementById("checkoutButton");
+    buttonEl.textContent='';
+    buttonEl.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...`;
+    buttonEl.disabled = true;
+    
     // can we just send the cart object as an array of meals?
     // NO - we need to massage the data
     const meals = state.cart.map(meal => {
@@ -94,7 +101,7 @@ const Cart = () => {
         <strong>Total: ${calculateTotal()}</strong>
         {
           Auth.loggedIn() ?
-          <button className="checkout highlight" onClick={submitCheckout}>
+          <button className="checkout highlight" id="checkoutButton" onClick={submitCheckout}>
             Checkout
           </button>
             :
