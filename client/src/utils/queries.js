@@ -24,6 +24,7 @@ export const QUERY_MEALS = gql `
     }
   }
 `;
+
 // get a list of all meals in database
 export const QUERY_ALL_MEALS = gql `
   {
@@ -59,6 +60,9 @@ export const QUERY_USER = gql `
       city
       province
       postalCode
+      favMeals{
+        _id
+      }
       subscription {
         _id
         purchaseDate
@@ -70,6 +74,27 @@ export const QUERY_USER = gql `
           quantity
           image
         }
+      }
+    }
+  }
+`;
+
+// gets favourite meals for logged in user
+export const QUERY_MEALS_AND_FAVS = gql `
+  {
+    user {
+      favMeals{
+        _id
+      }
+    }
+    meals {
+      _id
+      name
+      ingredients
+      price
+      image
+      category {
+        _id
       }
     }
   }

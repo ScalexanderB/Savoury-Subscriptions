@@ -1,22 +1,19 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { useStoreContext } from '../../utils/GlobalState';
-import { UPDATE_MEALS } from '../../utils/actions';
 
+import { UPDATE_MEALS, UPDATE_FAVS,  } from '../../utils/actions';
 import MealCard from '../MealCard';
-import { QUERY_MEALS } from '../../utils/queries';
+import { QUERY_MEALS_AND_FAVS } from '../../utils/queries';
 import { idbPromise } from "../../utils/helpers";
 
 import spinner from "../../egg-loading.gif"
 
-
 function MealsList() {
   const [state, dispatch] = useStoreContext();
-
   const { currentCategory } = state;
-  
-  let { loading, data } = useQuery(QUERY_MEALS);
-  
+  const { loading, data } = useQuery(QUERY_MEALS_AND_FAVS);
+
   useEffect(() => {
     // if there's data to be stored
     if (data) {
@@ -25,6 +22,14 @@ function MealsList() {
         type: UPDATE_MEALS,
         meals: data.meals
       });
+
+      if(data.user){
+        //also update users favMeals
+        dispatch({
+          type: UPDATE_FAVS,
+          favs: [...data.user.favMeals.map(id=>id._id)] || []
+        });
+      }
   
       // but let's also take each meal and save it to IndexedDB using the helper function 
       data.meals.forEach((meal) => {
@@ -47,6 +52,10 @@ function MealsList() {
       // if no category or the all category is selected
       if (!currentCategory || currentCategory ===  (state.categories.find( cat =>  cat.name === "All" ? currentCategory : false)._id)) {
         return state.meals;
+      }
+      // if Favourites category is selected
+      else if (currentCategory === (state.categories.find( cat =>  cat.name === "Favourites" ? currentCategory : false)._id)){
+        return state.meals.filter(meal =>   state.favs.find( fav => fav === meal._id ) );
       }
         // go through all meals and then through all categories in that meal to see if it matches the current category
       return state.meals.filter(meal =>  meal.category.find(id =>  id._id === currentCategory));

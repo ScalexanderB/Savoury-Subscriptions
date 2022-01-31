@@ -9,7 +9,8 @@ const StoreProvider = ({ value = [], ...props }) => {
         meals: [],
         cart: [],
         categories: [],
-        currentCategory: ''
+        currentCategory: '',
+        favs: []
     });
     // use this to confirm it works!
     //console.log(state);

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-
+import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_TO_CART } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
-import { ADD_FAV_MEAL } from "../../utils/mutations";
+import { ADD_FAV_MEAL , REMOVE_FAV_MEAL} from "../../utils/mutations";
+import { ADD_TO_FAVS, REMOVE_FROM_FAVS } from "../../utils/actions"
 import { useMutation } from '@apollo/client';
 
 function MealCard(item) {
   const { name, image, ingredients, price } = item;
-  const [, dispatch] = useStoreContext();
-  //const { cart } = state;
-
-  const [addFav, { error }] = useMutation(ADD_FAV_MEAL);
+  const [state , dispatch] = useStoreContext();
+  const [addFav] = useMutation(ADD_FAV_MEAL);
+  const [removeFav] = useMutation(REMOVE_FAV_MEAL);
 
   // for quantity of servings
   const [qty, setQty] = useState(1);
@@ -29,22 +29,47 @@ function MealCard(item) {
   }
 
   const toggleFavMeal = async () =>{
-    try {
-      const mutationResponse = await addFav({
-        variables: { id: item._id },
-      });
-      console.log(mutationResponse);
-    } catch (e) {
-      console.log(e);
+    if(!isFav()){
+      try {
+        const mutationResponse = await addFav({
+          variables: { id: item._id },
+        });
+        //console.log(mutationResponse);
+        if(mutationResponse){
+          dispatch({
+            type: ADD_TO_FAVS,
+            id: item._id
+          });
+      }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    else{
+      try {
+        const mutationResponse = await removeFav({
+          variables: { id: item._id },
+        });
+        //console.log(mutationResponse);
+        if(mutationResponse){
+          dispatch({
+            type: REMOVE_FROM_FAVS,
+            id: item._id
+          });
+        }
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
-
+  
+  const isFav = ()=> state.favs.find(id=>id === item._id); 
+  const favClasses = () => isFav() ? "favmeal selected" : "favmeal" ;  
 
   const addToCart = () => {
     /// this should add a new meal package with its own servings quantity
     /// wether or not the meal already is present in the cart
-       //console.log(item);
-
+  
     // flash and added to cart message then reset the mealcard after a timeout
        setAdded(1);
        setTimeout(() => {
@@ -71,9 +96,13 @@ function MealCard(item) {
       </div>
         <div className="d-flex" style={{justifyContent:"space-between"}}>
           <h3>{name}</h3>
-          <span role="img" aria-label="favourite" onClick={toggleFavMeal} style={{cursor:"pointer"}}>
-            ⭐
-          </span>
+          {
+          Auth.loggedIn() ?
+          <img className={favClasses()} aria-label="favourite" onClick={toggleFavMeal} style={{cursor:"pointer"}} />
+            :
+            <></>
+          }         
+        
         </div>
         <div className="d-flex" style={{textAlign:"left", justifyContent:"center"}}>
             <img style={{alignSelf:"flex-start"}}

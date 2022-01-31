@@ -18,7 +18,7 @@ function Nav() {
       <nav className='flex-row'>
         {Auth.loggedIn() ? (
           <>
-            <Link to='/meals'>Meals</Link>
+            <Link to='/meals'>Menu</Link>
             <Link to='/myprofile'>Account</Link>
             <a href="/" onClick={() => Auth.logout()}>
               Logout
@@ -29,7 +29,7 @@ function Nav() {
             <button id="SignupPg2" className="login-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#popDownSignup2" aria-controls="popDownSignup2" style={{display:"none"}}>
               Im a hidden link to page 2 of the sign up
             </button>
-            <Link to='/meals'>Meals</Link>
+            <Link to='/meals'>Menu</Link>
             <button id="SignupButton" className="login-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#popDownSignUp" aria-controls="popDownSignUp">
               Signup
             </button>

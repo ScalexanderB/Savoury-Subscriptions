@@ -103,3 +103,13 @@ export const ADD_FAV_MEAL = gql `
   }
 }
 `
+
+export const REMOVE_FAV_MEAL = gql `
+ mutation removeFav($id: ID! ) {
+  removeFav(id: $id) {
+    favMeals{
+      _id
+    }
+  }
+}
+`

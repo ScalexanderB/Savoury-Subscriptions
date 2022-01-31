@@ -8,12 +8,39 @@ import {
     ADD_MULTIPLE_TO_CART,
     REMOVE_FROM_CART,
     UPDATE_CART_QUANTITY,
-    CLEAR_CART
+    CLEAR_CART,
+    ADD_TO_FAVS,
+    REMOVE_FROM_FAVS,
+    UPDATE_FAVS
 } from './actions';
 
 export const reducer = (state, action) => {
+    let newState;
     switch (action.type) {
-        // if action type value is the value of `UPDATE_MEALS`, return a new state object with an updated meals array
+        // if action type value is the value of `ADD_TO_FAVS`, return a new state object with an updated favs array
+        case ADD_TO_FAVS:
+            if (!state.favs.find(id => id === action.id))
+                return {
+                    ...state,
+                    favs: [...state.favs, action.id]
+                };
+            else return {...state };
+            // if action type value is the value of `REMOVE_FROM_FAVS`, return a new state object with an updated favs array
+        case REMOVE_FROM_FAVS:
+            newState = state.favs.filter(meal => {
+                return meal !== action.id;
+            });
+            return {
+                ...state,
+                favs: newState
+            };
+            // if action type value is the value of `UPDATE_FAVS`, return a new state object with an updated favs array
+        case UPDATE_FAVS:
+            return {
+                ...state,
+                favs: [...action.favs]
+            };
+            // if action type value is the value of `UPDATE_MEALS`, return a new state object with an updated meals array
         case UPDATE_MEALS:
             return {
                 ...state,
@@ -35,7 +62,6 @@ export const reducer = (state, action) => {
         case ADD_TO_CART:
             return {
                 ...state,
-                cartOpen: true,
                 cart: [...state.cart, action.meal]
             };
 
@@ -46,20 +72,18 @@ export const reducer = (state, action) => {
             };
 
         case REMOVE_FROM_CART:
-            let newState = state.cart.filter(meal => {
+            newState = state.cart.filter(meal => {
                 return meal._id !== action._id;
             });
 
             return {
                 ...state,
-                cartOpen: newState.length > 0,
                 cart: newState
             };
 
         case UPDATE_CART_QUANTITY:
             return {
                 ...state,
-                cartOpen: true,
                 cart: state.cart.map(meal => {
                     if (action._id === meal._id) {
                         meal.quantity = action.quantity;
@@ -71,7 +95,6 @@ export const reducer = (state, action) => {
         case CLEAR_CART:
             return {
                 ...state,
-                cartOpen: false,
                 cart: []
             };
 

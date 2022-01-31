@@ -9,7 +9,7 @@ import egg from '../egg-loading.gif'
 
 function Success() {
     const [addSubscription] = useMutation(ADD_SUBSCRIPTION);
-    const [state, dispatch] = useStoreContext();
+    const [, dispatch] = useStoreContext();
 
   useEffect(() => {
     async function saveSubscription() {
@@ -29,21 +29,22 @@ function Success() {
         });
 
         // create categories id array from all unique categories in meals
-        let categories = [];
+        const categories = 
         meals.map(meal=> meal.category.map(id=>{
-          if(!categories.includes(id)) categories.push(id);
+          if(!categories.includes(id)) return(id);
+          return null
         }))
 
         if (meals.length) {
             const { data } = await addSubscription({ variables: { meals, categories } });
             const mealData = data.addSubscription.meals;
           
-            dispatch({type: CLEAR_CART});
-
             mealData.forEach((item) => {
               item._id = item.cartId;
               idbPromise('cart', 'delete', {...item});
             });
+            
+            dispatch({type: CLEAR_CART});
           }
     }
 
@@ -64,7 +65,7 @@ function Success() {
           <h2>
             We hope you enjoy your tasty meals!
           </h2>
-        <img src={egg} width='480px'/>
+        <img src={egg} width='480px' alt="Thank you! An egg is cracked in your honour!"/>
       </div>
     );
   };

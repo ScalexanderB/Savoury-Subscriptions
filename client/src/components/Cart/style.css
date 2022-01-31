@@ -51,6 +51,16 @@
     padding-bottom: .6rem;
 }
 
+.favmeal {
+    width: 1.5rem;
+    height: 1.5rem;
+    content: url(https://www.svgrepo.com/show/6396/star.svg);
+}
+
+.favmeal.selected {
+    content: url(https://www.svgrepo.com/show/18481/star.svg);
+}
+
 .SubBox {
     border: 1px soild black;
     flex: 0 0 16rem;
