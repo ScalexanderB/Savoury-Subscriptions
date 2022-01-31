@@ -29,7 +29,7 @@ function Success() {
         });
 
         // create categories id array from all unique categories in meals
-        const categories = 
+        const categories = [];
         meals.map(meal=> meal.category.map(id=>{
           if(!categories.includes(id)) return(id);
           return null
@@ -40,8 +40,8 @@ function Success() {
             const mealData = data.addSubscription.meals;
           
             mealData.forEach((item) => {
-              item._id = item.cartId;
-              idbPromise('cart', 'delete', {...item});
+              item._id = parseInt(item.cartId);
+              idbPromise('cart', 'delete', { ...item });
             });
             
             dispatch({type: CLEAR_CART});
@@ -51,7 +51,7 @@ function Success() {
     saveSubscription();
 
     setTimeout(() => {
-      window.location.assign('/myprofile');
+     // window.location.assign('/myprofile');
     }, 3000);
 
     }, [addSubscription, dispatch]);
