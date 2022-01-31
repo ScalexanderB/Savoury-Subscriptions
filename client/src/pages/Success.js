@@ -51,7 +51,7 @@ function Success() {
     saveSubscription();
 
     setTimeout(() => {
-     // window.location.assign('/myprofile');
+      window.location.assign('/myprofile');
     }, 3000);
 
     }, [addSubscription, dispatch]);

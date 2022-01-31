@@ -38,8 +38,8 @@ function MyProfile() {
                     <h3>
                       {new Date(parseInt(subscription.purchaseDate)).toLocaleDateString()}
                     </h3>
-                      {subscription.products.map(({ _id, image, name, price }, index) => (
-                        <div key={index} className="card px-1 py-1">
+                      {subscription.meals.map(({ _id, image, name, price, quantity }) => (
+                        <div key={_id} className="card px-1 py-1">
                           <Link to={`/meal/${_id}`}>
                             <img alt={name} src={`/images/${image}`} />
                             <p>{name}</p>
@@ -48,7 +48,7 @@ function MyProfile() {
                             <span>price: ${price}</span>
                             
                           </div>
-                          <div><span>quantity: {subscription.quantities[index]}</span></div>
+                          <div><span>quantity: {quantity}</span></div>
                         </div>
                       ))}
 
