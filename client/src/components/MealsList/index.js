@@ -9,7 +9,7 @@ import { idbPromise } from "../../utils/helpers";
 
 import spinner from "../../egg-loading.gif"
 
-function MealsList() {
+function MealsList(props) {
   const [state, dispatch] = useStoreContext();
   const { currentCategory } = state;
   const { loading, data } = useQuery(QUERY_MEALS_AND_FAVS);
@@ -63,7 +63,7 @@ function MealsList() {
 
   return (
     <div className="my-2">
-      <h2>Select Your Meals:</h2>
+      {props.noTitle ? <> </> :  <h2>Select Your Meals:</h2>}
       {state.meals.length ? (
         <div className="flex-row justify-content-center">
           {filterMeals().map((meal, index) => (
@@ -75,6 +75,7 @@ function MealsList() {
               price={meal.price}
               ingredients={meal.ingredients}
               category={meal.category}
+              currentSubscription={props?.currentSubscription || false}
             />
           ))}
         </div>

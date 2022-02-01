@@ -10,7 +10,7 @@ import { useMutation } from '@apollo/client';
 import "./style.css";
 
 function MealCard(item) {
-  const { name, image, ingredients, price, subscriptionMeal, editable } = item;
+  const { name, image, ingredients, price, subscriptionMeal, editable, currentSubscription } = item;
   const [state , dispatch] = useStoreContext();
   const [addFav] = useMutation(ADD_FAV_MEAL);
   const [removeFav] = useMutation(REMOVE_FAV_MEAL);
@@ -155,7 +155,8 @@ function MealCard(item) {
       { subscriptionMeal ?
           editable ?
         <span id='meal-edit-buttons'>
-          <button className='loginToggle highlight' onClick={replaceSubscriptionMeal}>Replace</button>
+          <button className='loginToggle highlight' type="button" data-bs-toggle="offcanvas" data-bs-target="#slideInMenu" aria-controls="slideInMenu" >
+            Replace</button>
           <button className='remove highlight' onClick={removeFromSubscription}>Remove</button>
           <button className='checkout highlight' onClick={updateSubscriptionMeal}>Update</button>
         </span>

@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SubscriptionBox from '../components/SubscriptionBox';
+import MenuSlideIn from '../components/MenuSlideIn';
+
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
+
 
 function MyProfile() {
    const { data, loading } = useQuery(QUERY_USER);
@@ -18,6 +21,7 @@ function MyProfile() {
 
   return (
     <>
+    <MenuSlideIn />
       <div className="container my-4">
         <Link to="/">← Back to Home</Link>
         <h1 className='mb-3'>Account</h1>
