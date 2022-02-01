@@ -7,8 +7,10 @@ import { ADD_FAV_MEAL , REMOVE_FAV_MEAL} from "../../utils/mutations";
 import { ADD_TO_FAVS, REMOVE_FROM_FAVS } from "../../utils/actions"
 import { useMutation } from '@apollo/client';
 
+import "./style.css";
+
 function MealCard(item) {
-  const { name, image, ingredients, price } = item;
+  const { name, image, ingredients, price, subscriptionMeal, editable } = item;
   const [state , dispatch] = useStoreContext();
   const [addFav] = useMutation(ADD_FAV_MEAL);
   const [removeFav] = useMutation(REMOVE_FAV_MEAL);
@@ -62,6 +64,21 @@ function MealCard(item) {
       }
     }
   }
+
+ const replaceSubscriptionMeal = () =>{
+
+
+  };
+
+ const updateSubscriptionMeal = () =>{
+
+
+  };
+
+ const removeFromSubscription = () =>{
+
+
+  };
   
   const isFav = ()=> state.favs.find(id=>id === item._id); 
   const favClasses = () => isFav() ? "favmeal selected" : "favmeal" ;  
@@ -121,16 +138,32 @@ function MealCard(item) {
         </div>
       <div className="d-flex mealCost">
         <span style={{paddingLeft:"2rem"}}>Servings:&nbsp;
-          <input style={{width:"2.1rem", padding:0, paddingLeft:".2rem"}}
-            type="number"
-            placeholder="1"
-            value={qty}
-            onChange={onChange}
-          />
+        
+          {!subscriptionMeal||editable ?  
+            <input id='mealCard-servingsInput' style={{width:"2.1rem", padding:0, paddingLeft:".2rem"}}
+              type="number"
+              placeholder="1"
+              value={qty}
+              onChange={onChange}  
+            />
+           :
+           <span>{qty}</span>
+          }
         </span>
         <span style={{paddingRight:"2rem"}}><h5 style={{display:"inline"}}>Price: ${financial(price*qty)}</h5> </span>
       </div>
-      <button className='add highlight' onClick={addToCart}>Add To Box</button>
+      { subscriptionMeal ?
+          editable ?
+        <span id='meal-edit-buttons'>
+          <button className='loginToggle highlight' onClick={replaceSubscriptionMeal}>Replace</button>
+          <button className='remove highlight' onClick={removeFromSubscription}>Remove</button>
+          <button className='checkout highlight' onClick={updateSubscriptionMeal}>Update</button>
+        </span>
+        :
+        <></>
+        :
+        <button className='add highlight' onClick={addToCart}>Add To Box</button>
+      }
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import SubscriptionBox from '../components/SubscriptionBox';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
@@ -33,26 +33,12 @@ function MyProfile() {
 
             {user.subscription.length ? (
               <div className="flex-row">
-                {user.subscription.map((subscription) => (
-                  <div key={subscription._id} className="my-2">
-                    <h3>
-                      {new Date(parseInt(subscription.purchaseDate)).toLocaleDateString()}
-                    </h3>
-                      {subscription.meals.map(({ _id, image, name, price, quantity }) => (
-                        <div key={_id} className="card px-1 py-1">
-                          <Link to={`/meal/${_id}`}>
-                            <img alt={name} src={`/images/${image}`} />
-                            <p>{name}</p>
-                          </Link>
-                          <div>
-                            <span>price: ${price}</span>
-                            
-                          </div>
-                          <div><span>quantity: {quantity}</span></div>
-                        </div>
-                      ))}
-
-                    </div>
+                {user.subscription.map((subscription, index) => (
+                  <SubscriptionBox 
+                    key={index}
+                    subscription={subscription} 
+                    index={index}
+                  />
                 ))}
               </div>
             ) : (
