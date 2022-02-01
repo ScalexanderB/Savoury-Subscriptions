@@ -250,13 +250,62 @@ nav a {
 
 .home-section {
     width: 80%;
-    height: 20rem;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    font-size: 2.25rem;
-    font-weight: bolder;
     margin-left: auto;
     margin-right: auto;
+}
+
+.promo {
+    width: 100%;
+    background-color: var(--quatrinary);
+    color: var(--dark);
+}
+
+.heading {
+    color: var(--tertiary);
+    font-weight: bold;
+    text-align: center;
+}
+
+.subheading {
+    color: var(--primary);
+    font-weight: bolder;
+    line-height: 2.2rem;
+    text-align: center;
+}
+
+.meal-promo {
+    width: 30%;
+    padding: var(--spacing-three);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--quatrinary);
+    border-radius: 15px;
+}
+
+.meal-promo img {
+    object-fit: contain;
+    max-width: 100%;
+    margin: var(--spacing-two);
+    border-radius: 10px;
+}
+
+.home-btn {
+    background-color: var(--secondary);
+    color: var(--primary);
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding: 0.25rem 1rem;
+    border-radius: .5rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0 1px;
 }
 
 .maskbox {
@@ -315,6 +364,10 @@ nav a {
     .sub-form {
         width: 100%;
         text-align: center;
+    }
+    .meal-promo {
+        width: 100%;
+        margin-bottom: var(--spacing-four);
     }
 }
 
