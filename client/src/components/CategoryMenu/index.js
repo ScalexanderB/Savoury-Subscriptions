@@ -42,7 +42,7 @@ function CategoryMenu() {
   return (
   <div className="categoryScrollBox">
       {categories.map(item => 
-        item._id == state.currentCategory ? 
+        item._id === state.currentCategory ? 
            (<button 
               className="category selected"        
               key={item._id}

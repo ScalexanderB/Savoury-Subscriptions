@@ -6,9 +6,9 @@ function Header(){
       <section className='hero'>
         <div className="maskbox">
           <div className="mask opacity-1">
-              Savour the flavour.
+              Savour the flavour,
               <p></p>
-              And your bank account.
+              and your bank account.
           </div>
         </div>
       </section>
