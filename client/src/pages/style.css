@@ -27,6 +27,7 @@
 
 /*  END OF BIG BANNER BLOCKS */
 
+
 /*  HEADER  */
 
 .bg-image {
@@ -34,21 +35,25 @@
     height: 600px;
 }
 
-.maskbox {
-    border: 1px;
-}
-
 .mask {
     color: rgb(255, 255, 255);
     font-weight: bold;
     font-style: italic;
-    text-shadow:5px 5px #232f3e;
-    font-size: 50px;
+    text-shadow: 0.3rem 0.3rem #232f3e;
+    font-size: 3.5rem;
     overflow: hidden;
-    margin: 10px;
+    margin: 1rem;
 }
 
+@media screen and (max-width: 48rem) {
+    .mask {
+        font-size: 240%;
+    }
+}
+
+
 /* END OF HEADER  */
+
 
 /*  NAVBAR  */
 
@@ -66,23 +71,18 @@ ul {
 }
 
 .logo img {
-   width: 150px;
-   height: 80px;
-   margin-top: -16px;
-   margin-bottom: -23px;
+    width: 150px;
+    height: 80px;
+    margin-top: -16px;
+    margin-bottom: -23px;
 }
+
 
 /*  END OF NAVBAR */
 
+
 /* LANDING PAGE */
-
-
 
 .footer {
     text-align: center;
 }
-
-
-
-
-

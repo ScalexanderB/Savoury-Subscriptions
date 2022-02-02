@@ -312,9 +312,9 @@ nav a {
     color: rgb(255, 255, 255);
     font-weight: bold;
     font-style: italic;
-    font-size: 60px;
+    font-size: 10rem;
     overflow: hidden;
-    margin: 10px;
+    margin: 1rem;
 }
 
 
