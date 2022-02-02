@@ -17,7 +17,7 @@ function SubscriptionBox({subscription, index}) {
   // all this effect does is initialize the tool tip on add to subscription button
   useEffect(()=>{
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
-    tooltipTriggerList.forEach( tooltipElement =>new bootstrap.Tooltip(tooltipElement)); 
+    tooltipTriggerList.forEach( tooltipElement =>new bootstrap.Tooltip(tooltipElement,{ trigger : 'hover' })); 
   });
 
   const setUpForEdit = () =>{
@@ -33,10 +33,6 @@ function SubscriptionBox({subscription, index}) {
   }
 
   const addMealToSubscription = () =>{
-    //close any opened tooltips
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
-    tooltipTriggerList.forEach( tooltipElement => tooltipElement.blur()); 
-
     //clear current replace meal settings in state
     dispatch({ type: SET_REPLACE_MEAL, sub:{id:'',meal:''} });
   }
