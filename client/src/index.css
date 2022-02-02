@@ -308,17 +308,11 @@ nav a {
     margin: 0 1px;
 }
 
-.maskbox {
-    border: 1px;
-}
-
 .mask {
     color: rgb(255, 255, 255);
     font-weight: bold;
     font-style: italic;
     font-size: 60px;
-    position: absolute;
-    left: 42%;
     overflow: hidden;
     margin: 10px;
 }
