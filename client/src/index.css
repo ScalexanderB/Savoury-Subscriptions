@@ -32,14 +32,6 @@ body {
     color: var(--dark);
 }
 
-header {
-    justify-content: space-between;
-}
-
-nav {
-    margin-right: 4.5rem;
-}
-
 nav ul,
 .card ul {
     list-style: none;
@@ -218,11 +210,15 @@ input:focus {
 /* HEADER & NAV STYLES */
 
 .nav-logo {
-    width: 30%;
+    width: 100%;
     margin: var(--spacing-one) var(--spacing-two);
+}
+.home-link {
+    max-width: 20%;
 }
 
 header {
+    display: flex;
     justify-content: space-between;
     background: var(--primary);
 }
@@ -230,10 +226,11 @@ header {
 nav {
     justify-content: space-between;
     align-items: center;
+    padding: 0 var(--spacing-four);
 }
 
 nav a {
-    padding: 0 var(--spacing-two);
+    padding: 0 var(--spacing-three);
     color: var(--light);
 }
 
@@ -375,6 +372,18 @@ nav a {
     .meal-promo {
         width: 100%;
         margin-bottom: var(--spacing-four);
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .home-link {
+        max-width: 40%;
+    }
+    nav {
+        padding-bottom: var(--spacing-three);
     }
 }
 

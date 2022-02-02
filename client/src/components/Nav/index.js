@@ -9,12 +9,13 @@ import Signup2 from '../Signup2';
 
 function Nav() {
   return (
-    <header className='flex-row px-2'>
-      <div>
+    <header>
+      <div  className='home-link'>
         <a href='/'>
           <img className='nav-logo' src={logoImage} alt='Savoury Subscriptions logo' />
         </a>
       </div>
+
       <nav className='flex-row'>
         {Auth.loggedIn() ? (
           <>
