@@ -95,6 +95,8 @@ function MealCard(item) {
       dispatch({ type: UPDATE_EDITABLE_SUBSCRIPTION, sub:{ ...state.editableSubscription , meals:newMealsState} });
       //clear current replace meal settings in state
       dispatch({ type: SET_REPLACE_MEAL, sub:{id:'',meal:''} });
+      //reset quantity in mealCard
+      setQty(1);
       //close the menu
       document.getElementById("closeSlideInMenu").click();
   }
@@ -113,6 +115,8 @@ function MealCard(item) {
     const newMealsState = [...state.editableSubscription.meals, { ...item, quantity: qty }]
     // update state with new data
     dispatch({ type: UPDATE_EDITABLE_SUBSCRIPTION, sub:{ ...state.editableSubscription , meals:newMealsState} });
+    //reset quantity in mealCard
+    setQty(1);
     //close the menu
     document.getElementById("closeSlideInMenu").click();
   };
@@ -178,7 +182,7 @@ function MealCard(item) {
         <span style={{paddingLeft:"2rem"}}>Servings:&nbsp;
         
           {!subscriptionMeal ?  
-            <input id='mealCard-servingsInput' style={{width:"2.1rem", padding:0, paddingLeft:".2rem"}}
+            <input className='mealCard-servingsInput' 
               type="number"
               placeholder="1"
               value={qty}
@@ -186,7 +190,7 @@ function MealCard(item) {
             />
            :
            editable ?
-               <input id='mealCard-servingsInput' style={{width:"2.1rem", padding:0, paddingLeft:".2rem"}}
+               <input className='mealCard-servingsInput' 
                 type="number"
                 placeholder="1"
                 value={item.quantity}
@@ -196,7 +200,12 @@ function MealCard(item) {
               <span>{qty}</span>
           }
         </span>
-        <span style={{paddingRight:"2rem"}}><h5 style={{display:"inline"}}>Price: ${financial(price*qty)}</h5> </span>
+        {editable ? 
+          <span style={{paddingRight:"2rem"}}><h5 style={{display:"inline"}}>Price: ${financial(price*item.quantity)}</h5> </span>
+        :
+          <span style={{paddingRight:"2rem"}}><h5 style={{display:"inline"}}>Price: ${financial(price*qty)}</h5> </span>
+        }
+        
       </div>
       { subscriptionMeal ?
           editable ?
