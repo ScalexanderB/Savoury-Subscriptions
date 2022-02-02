@@ -34,7 +34,7 @@ const resolvers = {
                     populate: 'category'
                 });
 
-                user.subscription.sort((a, b) => b.purchaseDate - a.purchaseDate);
+               // user.subscription.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
                 return user;
             }

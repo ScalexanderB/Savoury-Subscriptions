@@ -158,7 +158,6 @@ function MealCard(item) {
           <button className='loginToggle highlight' type="button" data-bs-toggle="offcanvas" data-bs-target="#slideInMenu" aria-controls="slideInMenu" >
             Replace</button>
           <button className='remove highlight' onClick={removeFromSubscription}>Remove</button>
-          <button className='checkout highlight' onClick={updateSubscriptionMeal}>Update</button>
         </span>
         :
         <></>

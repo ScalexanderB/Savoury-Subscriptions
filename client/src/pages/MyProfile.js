@@ -36,7 +36,7 @@ function MyProfile() {
             </div>
 
             {user.subscription.length ? (
-              <div className="flex-row">
+              <div className="d-flex flex-wrap">
                 {user.subscription.map((subscription, index) => (
                   <SubscriptionBox 
                     key={index}

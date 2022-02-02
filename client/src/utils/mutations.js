@@ -92,7 +92,7 @@ export const UPDATE_USER = gql `
           }
        }
    }
- `
+ `;
 
 export const ADD_FAV_MEAL = gql `
  mutation addToFavs($id: ID! ) {
@@ -102,7 +102,7 @@ export const ADD_FAV_MEAL = gql `
     }
   }
 }
-`
+`;
 
 export const REMOVE_FAV_MEAL = gql `
  mutation removeFav($id: ID! ) {
@@ -112,4 +112,23 @@ export const REMOVE_FAV_MEAL = gql `
     }
   }
 }
-`
+`;
+
+export const REMOVE_SUBSCRIPTION = gql `
+ mutation removeSubscription($id: ID! ) {
+  removeSubscription(id: $id) {
+    subscription {
+      _id
+      purchaseDate
+      meals {
+        _id
+        name
+        ingredients
+        price
+        quantity
+        image
+      }
+    }
+  }
+}
+`;
