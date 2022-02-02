@@ -40,7 +40,7 @@ const Home = () => {
           </div>
         </div>
 
-          <Link className='home-btn mt-4' to='/meals'>Browse Our Menu</Link>
+          <Link className='big-btn mt-4' to='/meals'>Browse Our Menu</Link>
       </section>
 
     </div>    

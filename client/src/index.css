@@ -295,12 +295,12 @@ nav a {
     border-radius: 10px;
 }
 
-.home-btn {
+.big-btn {
     background-color: var(--secondary) !important;
     color: var(--primary) !important;
     font-size: 1.5rem;
     text-decoration: none;
-    padding: 0.25rem 1rem;
+    padding: 0.75rem 1rem;
     border-radius: .5rem;
     border: none;
     outline: none;
@@ -319,23 +319,37 @@ nav a {
 
 
 /* PROFILE STYLES */
+.title {
+    color: var(--tertiary);
+    font-weight: bolder;
+}
+
+.name {
+    color: var(--primary);
+    font-weight: bold;
+    text-align: center;
+}
 
 .account-info {
-    width: 30%;
-    font-weight: bold;
-    color: var(--primary);
-}
-
-.account-emoji {
-    font-size: 5rem;
-}
-
-.sub-form {
     width: 50%;
     background-color: var(--light);
     border: none;
     border-radius: 15px;
     padding: var(--spacing-four);
+}
+
+.account-emoji {
+    font-size: 6rem;
+}
+
+.no-sub {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.no-sub img {
+    max-width: 45%;
+    border-radius: 10px;
 }
 
 .card {
