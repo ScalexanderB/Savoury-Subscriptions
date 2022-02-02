@@ -296,8 +296,8 @@ nav a {
 }
 
 .home-btn {
-    background-color: var(--secondary);
-    color: var(--primary);
+    background-color: var(--secondary) !important;
+    color: var(--primary) !important;
     font-size: 1.5rem;
     text-decoration: none;
     padding: 0.25rem 1rem;
@@ -346,13 +346,15 @@ nav a {
 
 .card {
     flex: 0 0 22rem;
-    text-align: center;
     margin: .5rem .8rem;
+    background-color: var(--quatrinary) !important;
+    border: none;
 }
 
 .error-text {
     color: var(--error);
 }
+
 
 @media screen and (max-width: 768px) {
     .card {

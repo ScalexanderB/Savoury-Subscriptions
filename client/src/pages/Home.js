@@ -39,7 +39,8 @@ const Home = () => {
             <h4 className='subheading'>Gluten Free</h4>
           </div>
         </div>
-        <a className='home-btn mt-4'>Browse Our Menu</a>
+
+          <Link className='home-btn mt-4' to='/meals'>Browse Our Menu</Link>
       </section>
 
     </div>    
