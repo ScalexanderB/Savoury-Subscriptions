@@ -24,18 +24,18 @@ function SubscriptionBox({subscription, index}) {
     // set the editableSubscription in state to the currentSubscription
     dispatch({ type: UPDATE_EDITABLE_SUBSCRIPTION, sub:{...subscription } });
     setEditMode(1);
-  }
+  };
 
   const clearEditMode = () =>{
     // set the editableSubscription in state to an empty object
     dispatch({ type: UPDATE_EDITABLE_SUBSCRIPTION, sub:{ } });
     setEditMode(0);
-  }
+  };
 
   const addMealToSubscription = () =>{
     //clear current replace meal settings in state
     dispatch({ type: SET_REPLACE_MEAL, sub:{id:'',meal:''} });
-  }
+  };
 
   const getSubscriptionTotalPrice = type =>{
       let sum = 0;
@@ -56,7 +56,7 @@ function SubscriptionBox({subscription, index}) {
       }
 
       return sum.toFixed(2);
-  }
+  };
   
   const deleteSubscription = async () =>{
     if(window.confirm("Are you sure you want to delete your subscription?")){
@@ -71,7 +71,12 @@ function SubscriptionBox({subscription, index}) {
         console.log(e);
       }
     }
-  }
+  };
+
+  const updateSubscription = async () =>{
+      // this will call a mustation to update the subscription of the logged in user
+      alert("Make me update");
+  };
 
   return (
   <div className="my-2 userSubscription">
@@ -84,7 +89,7 @@ function SubscriptionBox({subscription, index}) {
       { editMode ?
       <>
           <button className="remove highlight" type="button" onClick={deleteSubscription}>Delete</button>
-          <button className="checkout highlight" type="button">Save</button>
+          <button className="checkout highlight" type="button" onClick={updateSubscription}>Save</button>
           <button className="loginToggle highlight" type="button" onClick={toggleEditSubscription}>Cancel</button>
       </>
           :
