@@ -11,7 +11,9 @@ import {
     CLEAR_CART,
     ADD_TO_FAVS,
     REMOVE_FROM_FAVS,
-    UPDATE_FAVS
+    UPDATE_FAVS,
+    SET_REPLACE_MEAL,
+    UPDATE_EDITABLE_SUBSCRIPTION
 } from './actions';
 
 export const reducer = (state, action) => {
@@ -97,6 +99,16 @@ export const reducer = (state, action) => {
                 ...state,
                 cart: []
             };
+        case SET_REPLACE_MEAL:
+            return {
+                ...state,
+                currentMeal: action.sub.meal
+            }
+        case UPDATE_EDITABLE_SUBSCRIPTION:
+            return {
+                ...state,
+                editableSubscription: {...action.sub }
+            }
 
         default:
             return state;

@@ -4,26 +4,40 @@ import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_TO_CART } from '../../utils/actions';
 import { idbPromise } from "../../utils/helpers";
 import { ADD_FAV_MEAL , REMOVE_FAV_MEAL} from "../../utils/mutations";
-import { ADD_TO_FAVS, REMOVE_FROM_FAVS } from "../../utils/actions"
+import { ADD_TO_FAVS, REMOVE_FROM_FAVS, SET_REPLACE_MEAL, UPDATE_EDITABLE_SUBSCRIPTION } from "../../utils/actions"
 import { useMutation } from '@apollo/client';
 
 import "./style.css";
 
 function MealCard(item) {
-  const { name, image, ingredients, price, subscriptionMeal, editable, currentSubscription } = item;
+  const { name, image, ingredients, price, subscriptionMeal, editable } = item;
   const [state , dispatch] = useStoreContext();
   const [addFav] = useMutation(ADD_FAV_MEAL);
   const [removeFav] = useMutation(REMOVE_FAV_MEAL);
-
+  
+  const startingQuantity  = parseInt(item.quantity) || 1;
+  
   // for quantity of servings
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState(startingQuantity);
   // for added message flash alert
   const [added, setAdded] = useState(0);
 
   const onChange = (e) => {
+    
     let value = e.target.value;
     if(parseInt(value) < 1) {value=1;}
-    setQty(value);
+    
+    if(editable){
+           // update editableSubscription meals array and not the local state ie. qty
+           const newMealsState = state.editableSubscription.meals.map(meal =>{
+            if(meal._id === item._id) return { ...item, quantity: parseInt(value) };
+            return meal;
+          });
+          
+          // update state with new data
+          dispatch({ type: UPDATE_EDITABLE_SUBSCRIPTION, sub:{ ...state.editableSubscription , meals:newMealsState} });
+    }
+    else{ setQty(value); }
   };
 
   function financial(x) {
@@ -65,19 +79,42 @@ function MealCard(item) {
     }
   }
 
- const replaceSubscriptionMeal = () =>{
-
-
+  const setUpForReplacement = () =>{
+    // set the currentSubscription and the currentMeal in state
+    dispatch({ type: SET_REPLACE_MEAL, sub:{id:subscriptionMeal,meal:item._id} });
   };
 
- const updateSubscriptionMeal = () =>{
+  const replaceMealInSubscription = () =>{
+    //this should update a state subscription for eventual mutaion use.
+      // update editableSubscription meals array into newMealsState
+      const newMealsState = state.editableSubscription.meals.map(meal =>{
+        if(meal._id === state.currentMeal) return { ...item, quantity: qty };
+        return meal;
+      });
+      // update state with new data
+      dispatch({ type: UPDATE_EDITABLE_SUBSCRIPTION, sub:{ ...state.editableSubscription , meals:newMealsState} });
+      //clear current replace meal settings in state
+      dispatch({ type: SET_REPLACE_MEAL, sub:{id:'',meal:''} });
+      //close the menu
+      document.getElementById("closeSlideInMenu").click();
+  }
 
-
+  const removeFromSubscription = () =>{
+    // all subscriptionupdates should be done in state until save is clicked
+    // update editableSubscription meals array into newMealsState
+    const newMealsState = state.editableSubscription.meals.filter(meal => meal._id !== item._id);
+    // update state with new data
+    dispatch({ type: UPDATE_EDITABLE_SUBSCRIPTION, sub:{ ...state.editableSubscription , meals:newMealsState} });
   };
 
- const removeFromSubscription = () =>{
-
-
+  const addToSubscription = () =>{
+    // all subscriptionupdates should be done in state until save is clicked
+    // update editableSubscription meals array into newMealsState that includes item
+    const newMealsState = [...state.editableSubscription.meals, { ...item, quantity: qty }]
+    // update state with new data
+    dispatch({ type: UPDATE_EDITABLE_SUBSCRIPTION, sub:{ ...state.editableSubscription , meals:newMealsState} });
+    //close the menu
+    document.getElementById("closeSlideInMenu").click();
   };
   
   const isFav = ()=> state.favs.find(id=>id === item._id); 
@@ -87,17 +124,18 @@ function MealCard(item) {
     /// this should add a new meal package with its own servings quantity
     /// wether or not the meal already is present in the cart
   
-    // flash and added to cart message then reset the mealcard after a timeout
+    // flash an added to cart message then reset the mealcard after a timeout
        setAdded(1);
        setTimeout(() => {
         setAdded(0);
         setQty(1);
        }, 950);
-
+      //add to state
       dispatch({
         type: ADD_TO_CART,
         meal: { ...item, quantity: qty }
       });
+      //add to idb cache
       idbPromise('cart', 'put', { ...item, quantity: qty, _id: Date.now() });
   };
 
@@ -114,7 +152,7 @@ function MealCard(item) {
         <div className="d-flex" style={{justifyContent:"space-between"}}>
           <h3>{name}</h3>
           {
-          Auth.loggedIn() ?
+          Auth.loggedIn() && !subscriptionMeal ?
           <img className={favClasses()} aria-label="favourite" onClick={toggleFavMeal} style={{cursor:"pointer"}} />
             :
             <></>
@@ -139,7 +177,7 @@ function MealCard(item) {
       <div className="d-flex mealCost">
         <span style={{paddingLeft:"2rem"}}>Servings:&nbsp;
         
-          {!subscriptionMeal||editable ?  
+          {!subscriptionMeal ?  
             <input id='mealCard-servingsInput' style={{width:"2.1rem", padding:0, paddingLeft:".2rem"}}
               type="number"
               placeholder="1"
@@ -147,7 +185,15 @@ function MealCard(item) {
               onChange={onChange}  
             />
            :
-           <span>{qty}</span>
+           editable ?
+               <input id='mealCard-servingsInput' style={{width:"2.1rem", padding:0, paddingLeft:".2rem"}}
+                type="number"
+                placeholder="1"
+                value={item.quantity}
+                onChange={onChange}  
+              />
+            :
+              <span>{qty}</span>
           }
         </span>
         <span style={{paddingRight:"2rem"}}><h5 style={{display:"inline"}}>Price: ${financial(price*qty)}</h5> </span>
@@ -155,13 +201,19 @@ function MealCard(item) {
       { subscriptionMeal ?
           editable ?
         <span id='meal-edit-buttons'>
-          <button className='loginToggle highlight' type="button" data-bs-toggle="offcanvas" data-bs-target="#slideInMenu" aria-controls="slideInMenu" >
-            Replace</button>
+          <button className='loginToggle highlight' type="button" data-bs-toggle="offcanvas" data-bs-target="#slideInMenu" aria-controls="slideInMenu"
+          onClick={setUpForReplacement} >Replace</button>
           <button className='remove highlight' onClick={removeFromSubscription}>Remove</button>
         </span>
         :
         <></>
         :
+          state.editableSubscription?._id || 0 ?
+            state.currentMeal === '' ?
+            <button className='add highlight' onClick={addToSubscription}>Add to Subscription</button>
+            :
+            <button className='add highlight' onClick={replaceMealInSubscription}>Replace</button>
+          :
         <button className='add highlight' onClick={addToCart}>Add To Box</button>
       }
     </div>

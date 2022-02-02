@@ -63,7 +63,7 @@ function MealsList(props) {
 
   return (
     <div className="my-2">
-      {props.noTitle ? <> </> :  <h2>Select Your Meals:</h2>}
+      {props.noTitle ? <></> :  <h2>Select Your Meals:</h2>}
       {state.meals.length ? (
         <div className="flex-row justify-content-center">
           {filterMeals().map((meal, index) => (
@@ -75,7 +75,6 @@ function MealsList(props) {
               price={meal.price}
               ingredients={meal.ingredients}
               category={meal.category}
-              currentSubscription={props?.currentSubscription || false}
             />
           ))}
         </div>

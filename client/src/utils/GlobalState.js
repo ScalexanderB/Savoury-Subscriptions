@@ -10,7 +10,8 @@ const StoreProvider = ({ value = [], ...props }) => {
         cart: [],
         categories: [],
         currentCategory: '',
-        favs: []
+        favs: [],
+        editableSubscription:{meals:[]}
     });
     // use this to confirm it works!
     //console.log(state);
