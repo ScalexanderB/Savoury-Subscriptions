@@ -44,9 +44,6 @@
     font-style: italic;
     text-shadow:5px 5px #232f3e;
     font-size: 50px;
-    position: absolute;
-    left: 30%;
-    top: 50%;
     overflow: hidden;
     margin: 10px;
 }
