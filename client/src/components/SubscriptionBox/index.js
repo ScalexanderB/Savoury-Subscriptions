@@ -6,10 +6,8 @@ function SubscriptionBox({subscription, index}) {
   const [editMode, setEditMode] = useState(0);
   const toggleEditSubscription = () =>  editMode ? setEditMode(0) : setEditMode(1);
 
-
-
   return (<div key={subscription._id} className="my-2 userSubscription">
-  <div className='subscriptionHeader flex-row justify-space-between' style={{alignItems:"center" , backgroundColor:"var(--bs-grey-900)"}}>
+  <div className='subscriptionHeader flex-row justify-space-between' style={{alignItems:"center" , backgroundColor:"lightgrey"}}>
   <span>
     <h3>
       Subsciption #{index+1} {new Date(parseInt(subscription.purchaseDate)).toLocaleDateString()}
