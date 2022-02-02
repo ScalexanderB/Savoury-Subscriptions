@@ -3,13 +3,11 @@ import '../../pages/style.css';
 
 function Header(){
     return(
-      <section className='hero'>
-        <div className="maskbox">
-          <div className="mask opacity-1">
+      <section className='hero d-flex flex-column align-items-center justify-content-end' >
+        <div className="mask" >
               Savour the flavour,
               <p></p>
               and your bank account.
-          </div>
         </div>
       </section>
     )

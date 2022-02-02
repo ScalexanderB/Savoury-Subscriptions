@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SubscriptionBox from '../components/SubscriptionBox';
+import MenuSlideIn from '../components/MenuSlideIn';
 
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
+
 
 function MyProfile() {
    const { data, loading } = useQuery(QUERY_USER);
@@ -18,6 +21,7 @@ function MyProfile() {
 
   return (
     <>
+    <MenuSlideIn />
       <div className="container my-4">
         <Link to="/">← Back to Home</Link>
         <h1 className='mb-3'>Account</h1>
@@ -33,26 +37,12 @@ function MyProfile() {
 
             {user.subscription.length ? (
               <div className="flex-row">
-                {user.subscription.map((subscription) => (
-                  <div key={subscription._id} className="my-2">
-                    <h3>
-                      {new Date(parseInt(subscription.purchaseDate)).toLocaleDateString()}
-                    </h3>
-                      {subscription.meals.map(({ _id, image, name, price, quantity }) => (
-                        <div key={_id} className="card px-1 py-1">
-                          <Link to={`/meal/${_id}`}>
-                            <img alt={name} src={`/images/${image}`} />
-                            <p>{name}</p>
-                          </Link>
-                          <div>
-                            <span>price: ${price}</span>
-                            
-                          </div>
-                          <div><span>quantity: {quantity}</span></div>
-                        </div>
-                      ))}
-
-                    </div>
+                {user.subscription.map((subscription, index) => (
+                  <SubscriptionBox 
+                    key={index}
+                    subscription={subscription} 
+                    index={index}
+                  />
                 ))}
               </div>
             ) : (

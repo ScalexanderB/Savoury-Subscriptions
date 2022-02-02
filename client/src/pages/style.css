@@ -34,21 +34,17 @@
     height: 600px;
 }
 
-.maskbox {
-    border: 1px;
-}
-
 .mask {
     color: rgb(255, 255, 255);
     font-weight: bold;
     font-style: italic;
-    text-shadow:5px 5px #232f3e;
-    font-size: 50px;
-    position: absolute;
+    text-shadow:0.3rem 0.3rem #232f3e;
+    font-size: 3.5rem;
+    position: relative;
     left: 30%;
     top: 50%;
     overflow: hidden;
-    margin: 10px;
+    margin: 1rem;
 }
 
 /* END OF HEADER  */
