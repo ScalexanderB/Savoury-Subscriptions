@@ -33,7 +33,10 @@ function SubscriptionBox({subscription, index}) {
   }
 
   const addMealToSubscription = () =>{
-    //alert("adding meal");
+    //close any opened tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
+    tooltipTriggerList.forEach( tooltipElement => tooltipElement.blur()); 
+
     //clear current replace meal settings in state
     dispatch({ type: SET_REPLACE_MEAL, sub:{id:'',meal:''} });
   }
@@ -76,10 +79,10 @@ function SubscriptionBox({subscription, index}) {
 
   return (
   <div className="my-2 userSubscription">
-  <div className='subscriptionHeader flex-row px-2' style={{alignItems:"center", backgroundColor:"lightgrey"}}>
+  <div className='subscriptionHeader flex-row flex-wrap px-2' style={{alignItems:"center", backgroundColor:"lightgrey"}}>
     <h3>Subsciption #{index+1} </h3> 
     
-  <div className='flex-row justify-space-between' style={{alignItems:"center", flex:"1 0"}}>
+  <div className='flex-row justify-space-between flex-nowrap' style={{alignItems:"center", flex:"1 1"}}>
     <span style={{marginLeft:"2rem"}}>started: {new Date(parseInt(subscription.purchaseDate)).toLocaleDateString()}</span>
     <span>
       { editMode ?
