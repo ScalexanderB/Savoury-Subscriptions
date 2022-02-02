@@ -154,6 +154,11 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in.');
         },
+        // updateSubscription: async(parent, args, context) => {
+        //     if (context.subscription) {
+        //         return await Subscription
+        //     }
+        // }
         // updateMeal: async (parent, { _id, quantity }) => {
         //     const decrement = Math.abs(quantity) * -1;
 
