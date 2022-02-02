@@ -27,7 +27,7 @@
 
 /*  END OF BIG BANNER BLOCKS */
 
-/* HEADER */
+/*  HEADER  */
 
 .bg-image {
     background-image: url('../components/assets/images/table-spread.jpg');
@@ -42,12 +42,18 @@
     color: rgb(255, 255, 255);
     font-weight: bold;
     font-style: italic;
-    font-size: 60px;
+    text-shadow:5px 5px #232f3e;
+    font-size: 50px;
     position: absolute;
-    left: 42%;
+    left: 30%;
+    top: 50%;
     overflow: hidden;
     margin: 10px;
 }
+
+/* END OF HEADER  */
+
+/*  NAVBAR  */
 
 .navbar nav {
     position: relative;
@@ -68,6 +74,11 @@ ul {
    margin-top: -16px;
    margin-bottom: -23px;
 }
+
+/*  END OF NAVBAR */
+
+/* LANDING PAGE */
+
 
 
 .footer {
