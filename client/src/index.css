@@ -331,7 +331,7 @@ nav a {
 }
 
 .account-info {
-    width: 50%;
+    width: 65%;
     background-color: var(--light);
     border: none;
     border-radius: 15px;
@@ -351,6 +351,10 @@ nav a {
     max-width: 45%;
     border-radius: 10px;
 }
+.browse {
+    display: flex;
+    flex-direction: column;
+}
 
 .card {
     flex: 0 0 22rem;
@@ -368,19 +372,30 @@ nav a {
     .card {
         width: 100%;
     }
-    .account-info {
-        width: 100%;
-    }
-    .sub-form {
-        width: 100%;
-        text-align: center;
-    }
     .meal-promo {
         width: 100%;
         margin-bottom: var(--spacing-four);
     }
 }
 
+@media screen and (max-width: 992px) {
+    .account-info {
+        width: 100%;
+    }
+    .no-sub {
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .no-sub img {
+        max-width: 100%;
+    }
+    .browse {
+        justify-content: center;
+        align-items: center;
+        margin-bottom: var(--spacing-five);
+        text-align: center;
+    }
+}
 
 /* FLEX CONTENT */
 

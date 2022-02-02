@@ -52,10 +52,12 @@ function MyProfile() {
             ) : (
               <div className='no-sub mt-5'>
                 <img src={require('../components/assets/images/family-dinner.jpg')} alt='family making dinner' />
-                <div className='mx-4'>
+                <div className='mx-4 browse'>
                   <h2 className='title mb-4'>Start Browsing our Savoury Meals!</h2>
-                  <h5 className='mb-5'>Once you have purchased your first subscription it will show up here for you to view and edit!</h5>
-                  <Link className='big-btn' to='/meals'>Browse Our Menu</Link>
+                  <h5 className='mb-4'>Once you have purchased your first subscription it will show up here for you to view and edit!</h5>
+                  <div>
+                    <Link className='big-btn' to='/meals'>Browse Our Menu</Link>
+                  </div>
                 </div>
               </div>
             )}
