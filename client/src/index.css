@@ -32,14 +32,6 @@ body {
     color: var(--dark);
 }
 
-header {
-    justify-content: space-between;
-}
-
-nav {
-    margin-right: 4.5rem;
-}
-
 nav ul,
 .card ul {
     list-style: none;
@@ -218,11 +210,15 @@ input:focus {
 /* HEADER & NAV STYLES */
 
 .nav-logo {
-    width: 30%;
+    width: 100%;
     margin: var(--spacing-one) var(--spacing-two);
+}
+.home-link {
+    max-width: 20%;
 }
 
 header {
+    display: flex;
     justify-content: space-between;
     background: var(--primary);
 }
@@ -230,10 +226,11 @@ header {
 nav {
     justify-content: space-between;
     align-items: center;
+    padding: 0 var(--spacing-four);
 }
 
 nav a {
-    padding: 0 var(--spacing-two);
+    padding: 0 var(--spacing-three);
     color: var(--light);
 }
 
@@ -295,12 +292,12 @@ nav a {
     border-radius: 10px;
 }
 
-.home-btn {
-    background-color: var(--secondary);
-    color: var(--primary);
+.big-btn {
+    background-color: var(--secondary) !important;
+    color: var(--primary) !important;
     font-size: 1.5rem;
     text-decoration: none;
-    padding: 0.25rem 1rem;
+    padding: 0.75rem 1rem;
     border-radius: .5rem;
     border: none;
     outline: none;
@@ -319,52 +316,95 @@ nav a {
 
 
 /* PROFILE STYLES */
+.title {
+    color: var(--tertiary);
+    font-weight: bolder;
+}
+
+.name {
+    color: var(--primary);
+    font-weight: bold;
+    text-align: center;
+}
 
 .account-info {
-    width: 30%;
-    font-weight: bold;
-    color: var(--primary);
-}
-
-.account-emoji {
-    font-size: 5rem;
-}
-
-.sub-form {
-    width: 50%;
+    width: 65%;
     background-color: var(--light);
     border: none;
     border-radius: 15px;
     padding: var(--spacing-four);
 }
 
+.account-emoji {
+    font-size: 6rem;
+}
+
+.no-sub {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.no-sub img {
+    max-width: 45%;
+    border-radius: 10px;
+}
+.browse {
+    display: flex;
+    flex-direction: column;
+}
+
 .card {
     flex: 0 0 22rem;
-    text-align: center;
     margin: .5rem .8rem;
+    background-color: var(--quatrinary) !important;
+    border: none;
 }
 
 .error-text {
     color: var(--error);
 }
 
+
 @media screen and (max-width: 768px) {
     .card {
         width: 100%;
-    }
-    .account-info {
-        width: 100%;
-    }
-    .sub-form {
-        width: 100%;
-        text-align: center;
     }
     .meal-promo {
         width: 100%;
         margin-bottom: var(--spacing-four);
     }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .home-link {
+        max-width: 40%;
+    }
+    nav {
+        padding-bottom: var(--spacing-three);
+    }
 }
 
+@media screen and (max-width: 992px) {
+    .account-info {
+        width: 100%;
+    }
+    .no-sub {
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .no-sub img {
+        max-width: 100%;
+    }
+    .browse {
+        justify-content: center;
+        align-items: center;
+        margin-bottom: var(--spacing-five);
+        text-align: center;
+    }
+}
 
 /* FLEX CONTENT */
 

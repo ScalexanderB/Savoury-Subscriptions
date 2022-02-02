@@ -24,14 +24,18 @@ function MyProfile() {
     <MenuSlideIn />
       <div className="container my-4">
         <Link to="/">← Back to Home</Link>
-        <h1 className='mb-3'>Account</h1>
+        <h1 className='mb-3 title'>Account</h1>
         {user ? (
           <>
-            <div className='flex-row justify-space-around align-center account-info mb-3'>
+            <div className='flex-row justify-space-around align-center account-info'>
+              <div className='flex-column align-center'>
               <span className='account-emoji' role='img' aria-label='face savoring food'>😋</span>
+              <h4 className='name mb-2'><span>{user.firstName} {user.lastName}</span></h4>
+              </div>
               <div>
-                <h5>Account Holder: <span>{user.firstName} {user.lastName}</span></h5>
-                <h5 className='mb-0'>Email: <span>{user.email}</span></h5>
+                <h5 className='mb-3'>Email: <span>{user.email}</span></h5>
+                <h5 className='mb-3'>Location: <span>{user.city}, {user.province}</span></h5>
+                <h5>Subscriptions: <span>{user.subscription.length}</span></h5>
               </div>
             </div>
 
@@ -46,24 +50,15 @@ function MyProfile() {
                 ))}
               </div>
             ) : (
-              <div>
-                <h2 className='mb-3'>Start your subscription!</h2>
-                <form className='sub-form flex-column'>
-                  <p>Select any dietary restrictions that apply to you:</p>
-                  <div className='mx-3'>
-                    <label htmlFor='veg'>Vegetarian</label>
-                    <input name='veg' type='checkbox' />
+              <div className='no-sub mt-5'>
+                <img src={require('../components/assets/images/family-dinner.jpg')} alt='family making dinner' />
+                <div className='mx-4 browse'>
+                  <h2 className='title mb-4'>Start Browsing our Savoury Meals!</h2>
+                  <h5 className='mb-4'>Once you have purchased your first subscription it will show up here for you to view and edit!</h5>
+                  <div>
+                    <Link className='big-btn' to='/meals'>Browse Our Menu</Link>
                   </div>
-                  <div className='mx-3'>
-                    <label htmlFor='dairy'>Dairy Free</label>
-                    <input name='dairy' type='checkbox' />
-                  </div>
-                  <div className='mx-3'>
-                    <label htmlFor='gluten'>Gluten Free</label>
-                    <input name='gluten' type='checkbox' />
-                  </div>
-                  <button className='mt-3' type='submit'>Start Subsciption</button>
-                </form>
+                </div>
               </div>
             )}
           </>
