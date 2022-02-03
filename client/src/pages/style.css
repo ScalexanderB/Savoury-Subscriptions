@@ -1,0 +1,88 @@
+/* BIG BANNER BLOCKS USED ON HOME PAGE */
+
+.bigBannerBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4.2rem;
+    font-weight: bolder;
+    width: 100%;
+    min-height: 20rem;
+    padding: 4rem;
+    background-color: rgb(209, 132, 8);
+}
+
+.bigBannerBlock:nth-child(2n+1) {
+    background-color: rgb(231, 178, 33);
+}
+
+.bigBannerBlock:nth-child(3n+1) {
+    background-color: rgb(248, 204, 81);
+}
+
+.bigBannerBlock span {
+    color: var(--dark);
+}
+
+
+/*  END OF BIG BANNER BLOCKS */
+
+
+/*  HEADER  */
+
+.bg-image {
+    background-image: url('../components/assets/images/table-spread.jpg');
+    height: 600px;
+}
+
+.mask {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 0.3rem 0.3rem #232f3e;
+    font-size: 3.5rem;
+    overflow: hidden;
+    margin: 1rem;
+}
+
+@media screen and (max-width: 48rem) {
+    .mask {
+        font-size: 240%;
+    }
+}
+
+
+/* END OF HEADER  */
+
+
+/*  NAVBAR  */
+
+.navbar nav {
+    position: relative;
+    margin-bottom: 50px;
+    width: 100%;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+ul {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.logo img {
+    width: 150px;
+    height: 80px;
+    margin-top: -16px;
+    margin-bottom: -23px;
+}
+
+
+/*  END OF NAVBAR */
+
+
+/* LANDING PAGE */
+
+.footer {
+    text-align: center;
+}

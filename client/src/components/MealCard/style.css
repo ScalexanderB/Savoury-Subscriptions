@@ -1,0 +1,19 @@
+.userSubscription {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    ;
+}
+
+.userSubscription .card {
+    width: 20rem;
+}
+
+.userSubscription .mealCost {
+    margin-top: .2rem;
+}
+
+.mealCard-servingsInput {
+    width: 2.6rem;
+    padding: 0;
+    padding-left: .2rem;
+}

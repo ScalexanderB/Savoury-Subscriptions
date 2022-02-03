@@ -1,0 +1,130 @@
+.cart-button {
+    z-index: 5;
+    position: fixed;
+    top: 1.2rem;
+    right: 1.2rem;
+    font-size: 2rem;
+    cursor: pointer;
+    background-color: var(--secondary);
+    border-radius: 50%;
+    width: 3.8rem;
+    height: 3.8rem;
+    background-image: url(https://www.svgrepo.com/show/28743/box.svg);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 60%;
+    transition: all .32s ease;
+    border: .1px ridge transparent;
+}
+
+.cart-button:hover {
+    transition: all .32s ease;
+    width: 4.6rem;
+    height: 4.6rem;
+    top: .65rem;
+    right: .8rem;
+    border: .6rem ridge var(--secondary);
+}
+
+.cart-button:hover .cart-button-info {
+    transition: all .32s ease;
+    margin-left: -.7rem;
+    top: -.7rem;
+}
+
+.cart-button-info {
+    color: var(--light);
+    background-color: transparent;
+    position: relative;
+    top: -.8rem;
+    margin-left: -.55rem;
+    line-height: .9rem;
+    font-size: 1.1rem;
+}
+
+.cart-button-info-count {
+    color: var(--tertiary);
+}
+
+.mealCost {
+    justify-content: space-between;
+    padding-bottom: .6rem;
+}
+
+.favmeal {
+    width: 1.5rem;
+    height: 1.5rem;
+    content: url(https://www.svgrepo.com/show/6396/star.svg);
+}
+
+.favmeal.selected {
+    content: url(https://www.svgrepo.com/show/18481/star.svg);
+}
+
+.SubBox {
+    border: 1px soild black;
+    flex: 0 0 16rem;
+}
+
+.SubBoxScrollItem,
+.categoryScrollBox {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+}
+
+.categoryScrollBox {
+    margin: .2rem 0;
+}
+
+.categoryScrollBox button {
+    white-space: nowrap;
+}
+
+.offcanvas-header {
+    padding-bottom: 0;
+}
+
+.card * {
+    z-index: 1;
+}
+
+.card ul {
+    align-items: center;
+    text-align: left;
+}
+
+.addedMessage {
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: green;
+    opacity: 0;
+    transition: .75s ease;
+}
+
+.addedMessage.isAdded {
+    z-index: 2;
+    opacity: .95;
+    /* transition-delay: .15s; */
+    transition: .05s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        flex: 0 0 99%;
+    }
+    #slideInMenu .card {
+        flex: 0 0 22rem;
+    }
+    .mealCost {
+        padding-top: .6rem;
+    }
+}
