@@ -9,8 +9,8 @@ import { QUERY_USER } from '../utils/queries';
 
 function MyProfile() {
    const { data, loading } = useQuery(QUERY_USER);
-   let user;
 
+   let user;
    if (data) {
      user = data.user;
    }

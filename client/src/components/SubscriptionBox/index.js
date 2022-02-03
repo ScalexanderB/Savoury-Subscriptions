@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from '@apollo/client';
 import MealCard from "../MealCard";
-import { REMOVE_SUBSCRIPTION } from "../../utils/mutations";
+import { REMOVE_SUBSCRIPTION, UPDATE_SUBSCRIPTION } from "../../utils/mutations";
 import { UPDATE_EDITABLE_SUBSCRIPTION, SET_REPLACE_MEAL } from "../../utils/actions";
 import { useStoreContext } from '../../utils/GlobalState';
 
 const bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
 
-function SubscriptionBox({subscription, index}) {
+function SubscriptionBox({subscription, index }) {
   const [state , dispatch] = useStoreContext();
   const [removeSubscription] = useMutation(REMOVE_SUBSCRIPTION);
+  const [updateSubscription] = useMutation(UPDATE_SUBSCRIPTION);
   // to toggle editing os subscription
   const [editMode, setEditMode] = useState(0);
   const toggleEditSubscription = () =>  editMode ? clearEditMode() : setUpForEdit();
@@ -28,8 +29,9 @@ function SubscriptionBox({subscription, index}) {
 
   const clearEditMode = () =>{
     // set the editableSubscription in state to an empty object
-    dispatch({ type: UPDATE_EDITABLE_SUBSCRIPTION, sub:{ } });
     setEditMode(0);
+    dispatch({ type: UPDATE_EDITABLE_SUBSCRIPTION, sub:{ } });
+    
   };
 
   const addMealToSubscription = () =>{
@@ -73,9 +75,33 @@ function SubscriptionBox({subscription, index}) {
     }
   };
 
-  const updateSubscription = async () =>{
-      // this will call a mustation to update the subscription of the logged in user
-      alert("Make me update");
+  const useUpdateSubscriptionMutation = async () =>{
+
+    const meals = state.editableSubscription.meals.map(meal => {
+      return {
+        cartId: meal._id,
+        name: meal.name,
+        image: meal.image,
+        ingredients: meal.ingredients,
+        category: [],
+        quantity: parseInt(meal.quantity),
+        price: parseFloat(meal.price)
+      }
+    });
+
+      // this will call a mutation to update the subscription of the logged in user
+      try {
+        const mutationResponse = await updateSubscription({
+          variables: { id: subscription._id , meals},
+        });
+        console.log(mutationResponse);
+        clearEditMode();
+        
+        window.location="/myprofile";
+      } 
+      catch (e) {
+        console.log(e);
+      }
   };
 
   return (
@@ -89,7 +115,7 @@ function SubscriptionBox({subscription, index}) {
       { editMode ?
       <>
           <button className="remove highlight" type="button" onClick={deleteSubscription}>Delete</button>
-          <button className="checkout highlight" type="button" onClick={updateSubscription}>Save</button>
+          <button className="checkout highlight" type="button" onClick={useUpdateSubscriptionMutation}>Save</button>
           <button className="loginToggle highlight" type="button" onClick={toggleEditSubscription}>Cancel</button>
       </>
           :

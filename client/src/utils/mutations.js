@@ -132,3 +132,24 @@ export const REMOVE_SUBSCRIPTION = gql `
   }
 }
 `;
+
+export const UPDATE_SUBSCRIPTION = gql `
+  mutation updateSubscription($id: ID!, $meals: [MealInput]!  ) {
+    updateSubscription(id: $id, meals: $meals) {
+      _id
+      email
+      subscription {
+        _id
+        purchaseDate
+        meals {
+          _id
+          name
+          ingredients
+          price
+          quantity
+          image
+        }
+      }
+    }
+  }
+`;

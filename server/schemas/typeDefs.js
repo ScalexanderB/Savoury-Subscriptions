@@ -74,6 +74,7 @@ const typeDefs = gql `
     removeUser(id: ID!): User
     removeSubscription(id: ID!): User
     removeAllUserSubscriptions: User
+    updateSubscription(id: ID!, meals:[MealInput]!): User
     updateUser(firstName: String, lastName: String, email: String, addressLine: [String], city: String, province: String, postalCode: String,): User
     updateMeal(_id: ID!, quantity: Int!): Meal
     login(email: String!, password: String!): Auth

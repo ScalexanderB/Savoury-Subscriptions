@@ -11,7 +11,7 @@ const StoreProvider = ({ value = [], ...props }) => {
         categories: [],
         currentCategory: '',
         favs: [],
-        editableSubscription:{meals:[]}
+        editableSubscription: { meals: [] }
     });
     // use this to confirm it works!
     //console.log(state);

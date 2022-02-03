@@ -105,6 +105,7 @@ export const reducer = (state, action) => {
                 currentMeal: action.sub.meal
             }
         case UPDATE_EDITABLE_SUBSCRIPTION:
+            //console.log(action.sub);
             return {
                 ...state,
                 editableSubscription: {...action.sub }
