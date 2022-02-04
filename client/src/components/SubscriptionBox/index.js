@@ -17,7 +17,7 @@ function SubscriptionBox({subscription, index }) {
 
   // all this effect does is initialize the tool tip on add to subscription button
   useEffect(()=>{
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
     tooltipTriggerList.forEach( tooltipElement =>new bootstrap.Tooltip(tooltipElement,{ trigger : 'hover' })); 
   });
 
@@ -67,12 +67,15 @@ function SubscriptionBox({subscription, index }) {
           variables: { id: subscription._id },
         });
        // console.log(mutationResponse);
+       clearEditMode();
         // update state so subscriptions rerender
         // this is accompished through appolo InMemoryCache custom merge function
         // and a useEfect hook in the meal card to update the quantities on rerender
       } 
       catch (e) {
-        console.log(e);
+        //console.log(e);
+        clearEditMode();
+        openErrorMesssage(e);
       }
     }
   };
@@ -98,13 +101,29 @@ function SubscriptionBox({subscription, index }) {
         });
         //console.log(mutationResponse);
         clearEditMode();
-        
-        //window.location="/myprofile";
+        // update state so subscriptions rerender
+        // this is accompished through appolo InMemoryCache custom merge function
+        // and a useEfect hook in the meal card to update the quantities on rerender
       } 
       catch (e) {
-        console.log(e);
+        //console.log(e);
+        clearEditMode();
+        openErrorMesssage(e);
       }
   };
+
+  const openErrorMesssage = (err) =>{
+    const errorMsg = document.getElementById("errorMessage"+index);
+    errorMsg.classList.replace("hide", "show");
+    errorMsg.style.display="flex";
+  };
+
+  const closeErrorMesssage = () =>{
+    const errorMsg = document.getElementById("errorMessage"+index);
+    errorMsg.classList.replace("show", "hide");
+    errorMsg.style.display="none";
+  };
+
 
   return (
   <div className="my-2 userSubscription">
@@ -130,6 +149,18 @@ function SubscriptionBox({subscription, index }) {
      </span>
   </div>
   </div>
+
+  <div id={"errorMessage"+index} className="alert alert-danger fade hide justify-content-between" role="alert"
+      style={{display:"none"}}>
+      <span role="img" aria-label="Alert!" style={{transform:"scale(2)", position:"relative", top:".3rem"}}>
+      ⚠️
+    </span>
+    <span><strong>Oh, No!</strong> Your subscription failed to update. Please try again later.</span>
+    <button type="button" className="close but-danger" aria-label="Close" onClick={closeErrorMesssage}> 
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
     { editMode ?
         <div className="d-flex justify-flex-end px-3 py-1" style={{width:"100%", gap:"1.2rem"}}>
           <span>
