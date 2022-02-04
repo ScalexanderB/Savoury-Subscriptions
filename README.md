@@ -63,4 +63,4 @@ npm run develop
 
 ## Deployed Link
 
-Heroku link here
+Heroku link [here](https://savoury-subscriptions.herokuapp.com/)
