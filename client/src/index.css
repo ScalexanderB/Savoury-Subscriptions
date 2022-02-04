@@ -214,7 +214,7 @@ input:focus {
     margin: var(--spacing-one) var(--spacing-two);
 }
 .home-link {
-    max-width: 20%;
+    width: 22rem;
 }
 
 header {
