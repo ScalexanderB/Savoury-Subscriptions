@@ -4,7 +4,7 @@ import { useStoreContext } from '../../utils/GlobalState';
 
 import { UPDATE_MEALS, UPDATE_FAVS,  } from '../../utils/actions';
 import MealCard from '../MealCard';
-import { QUERY_MEALS_AND_FAVS } from '../../utils/queries';
+import { QUERY_MEALS, QUERY_USER_FAVS } from '../../utils/queries';
 import { idbPromise } from "../../utils/helpers";
 
 import spinner from "../../egg-loading.gif"
@@ -12,7 +12,8 @@ import spinner from "../../egg-loading.gif"
 function MealsList(props) {
   const [state, dispatch] = useStoreContext();
   const { currentCategory } = state;
-  const { loading, data } = useQuery(QUERY_MEALS_AND_FAVS);
+  const { loading, data } = useQuery(QUERY_MEALS);
+  const { favLoading, favData } = useQuery(QUERY_USER_FAVS);
 
   useEffect(() => {
     // if there's data to be stored
@@ -23,11 +24,11 @@ function MealsList(props) {
         meals: data.meals
       });
 
-      if(data.user){
+      if(favData){
         //also update users favMeals
         dispatch({
           type: UPDATE_FAVS,
-          favs: [...data.user.favMeals.map(id=>id._id)] || []
+          favs: [...favData.user.favMeals.map(id=>id._id)] || []
         });
       }
   
@@ -37,6 +38,8 @@ function MealsList(props) {
       });
       // add else if to check if `loading` is undefined in `useQuery()` Hook
       } else if (!loading) {
+        console.log("offline");
+        console.log(data);
         // since we're offline, get all of the data from the `meals` store
         idbPromise('meals', 'get').then((meals) => {
           // use retrieved data to set global state for offline browsing
