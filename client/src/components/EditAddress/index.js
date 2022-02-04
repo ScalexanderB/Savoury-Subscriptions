@@ -38,13 +38,22 @@ function EditAddress(props) {
     });
   };
 
+  const editClick = () =>{
+    document.getElementById('EditButton').click();
+  }
+
   return (
     <>  
   <div className="offcanvas offcanvas-top" data-bs-scroll="true" tabIndex="-1" id="popDownSignup2" aria-labelledby="popDownSignup2Label" style={{height:"25rem"}}>
     <div className="offcanvas-header">
       <h4 className="offcanvas-title centeredForm" id="popDownSignup2Label">Update your Address!</h4>
+      <button className='loginToggle highlight'  data-bs-dismiss="offcanvas" data-mdb-toggle="offcanvas" data-mdb-target="#popDownLogin"
+  aria-controls="offcanvasExample" onClick={editClick}>← Go Back</button>
       <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      
     </div>
+
+    
   
     <div className="offcanvas-body centeredForm">
     <h5>Please enter your new address</h5>
@@ -100,7 +109,7 @@ function EditAddress(props) {
           />
         </div>
         <div className="flex-row flex-end">
-          <button className="submit highlight" style={{marginLeft:"77%"}} type="submit">Submit</button>
+          <button className="submit highlight" style={{marginLeft:"77%", color: "white"}} type="submit">Submit</button>
         </div>
         {formState.errMsg ? <>
           <div className="flex-row justify-center" style={{color:"var(--bs-danger)"}}>
