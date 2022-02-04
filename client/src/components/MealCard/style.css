@@ -17,3 +17,7 @@
     padding: 0;
     padding-left: .2rem;
 }
+
+#slideInMenuLabel {
+    flex: 0 1 94%;
+}
