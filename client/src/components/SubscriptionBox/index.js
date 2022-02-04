@@ -96,7 +96,7 @@ function SubscriptionBox({subscription, index }) {
         const mutationResponse = await updateSubscription({
           variables: { id: subscription._id , meals},
         });
-        console.log(mutationResponse);
+        //console.log(mutationResponse);
         clearEditMode();
         
         //window.location="/myprofile";
