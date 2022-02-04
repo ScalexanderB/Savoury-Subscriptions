@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SubscriptionBox from '../components/SubscriptionBox';
 import MenuSlideIn from '../components/MenuSlideIn';
+import EditUser from '../components/EditUser';
+import EditAddress from '../components/EditAddress';
 
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
@@ -34,8 +36,16 @@ function MyProfile() {
               </div>
               <div>
                 <h5 className='mb-3'>Email: <span>{user.email}</span></h5>
-                <h5 className='mb-3'>Location: <span>{user.city}, {user.province}</span></h5>
+                <h5 className='mb-3'>Location: <span>{user.addressLine.join(" ")}, {user.city}, {user.province},  {user.postalCode}</span></h5>
                 <h5>Subscriptions: <span>{user.subscription.length}</span></h5>
+                <button id="SignupButton" className="loginToggle highlight" type="button" data-bs-toggle="offcanvas" data-bs-target="#popDownSignUp" aria-controls="popDownSignUp">
+                  Edit User
+                </button>
+                <button id="SignupPg2" className="loginToggle highlight" type="button" data-bs-toggle="offcanvas" data-bs-target="#popDownSignup2" aria-controls="popDownSignup2">
+              Edit Address
+            </button>
+
+                <EditUser /><EditAddress />
               </div>
             </div>
 

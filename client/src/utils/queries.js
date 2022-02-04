@@ -80,7 +80,6 @@ export const QUERY_USER = gql `
   }
 `;
 
-// gets favourite meals for logged in user
 export const QUERY_MEALS_AND_FAVS = gql `
   {
     user {
@@ -96,6 +95,18 @@ export const QUERY_MEALS_AND_FAVS = gql `
       price
       image
       category {
+        _id
+      }
+    }
+  }
+`;
+
+// gets favourite meals for logged in user
+export const QUERY_USER_FAVS = gql `
+  {
+    user {
+      _id
+      favMeals{
         _id
       }
     }
