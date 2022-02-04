@@ -8,7 +8,24 @@ class AuthService {
     loggedIn() {
         // Checks if there is a saved token and it's still valid
         const token = this.getToken();
+        this.autoLogoutOnExpire(token)
         return !!token && !this.isTokenExpired(token);
+    }
+
+    autoLogoutOnExpire(token) {
+        const self = this;
+        try {
+            const decoded = decode(token);
+            const secondsTillExpire = (decoded.exp - (Date.now() / 1000))
+                //console.log(secondsTillExpire);
+            setTimeout(() => {
+                //console.log("LOGOUT CHECK")
+                if (!self.loggedIn()) self.expireLogout();
+            }, parseInt(secondsTillExpire * 1000));
+
+        } catch (err) {
+            return false;
+        }
     }
 
     isTokenExpired(token) {
@@ -46,6 +63,13 @@ class AuthService {
         localStorage.removeItem('id_token');
         // this will reload the page and reset the state of the application
         window.location.assign('/');
+    }
+
+    expireLogout() {
+        // for when your token expires // otherwise just like logout
+        localStorage.removeItem('id_token');
+        // this will let the user know they have been logged out 
+        window.location.assign('/expired');
     }
 }
 

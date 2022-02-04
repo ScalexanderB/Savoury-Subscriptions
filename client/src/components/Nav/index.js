@@ -16,7 +16,7 @@ function Nav() {
         </a>
       </div>
 
-      <nav className='flex-row'>
+      <nav className='flex-row' style={{marginRight: "4rem"}}>
         {Auth.loggedIn() ? (
           <>
             <Link to='/meals'>Menu</Link>
