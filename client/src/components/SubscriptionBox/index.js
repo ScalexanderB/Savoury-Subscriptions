@@ -66,8 +66,10 @@ function SubscriptionBox({subscription, index }) {
         const mutationResponse = await removeSubscription({
           variables: { id: subscription._id },
         });
-        console.log(mutationResponse);
+       // console.log(mutationResponse);
         // update state so subscriptions rerender
+        // this is accompished through appolo InMemoryCache custom merge function
+        // and a useEfect hook in the meal card to update the quantities on rerender
       } 
       catch (e) {
         console.log(e);
@@ -97,7 +99,7 @@ function SubscriptionBox({subscription, index }) {
         console.log(mutationResponse);
         clearEditMode();
         
-        window.location="/myprofile";
+        //window.location="/myprofile";
       } 
       catch (e) {
         console.log(e);
@@ -107,7 +109,7 @@ function SubscriptionBox({subscription, index }) {
   return (
   <div className="my-2 userSubscription">
   <div className='subscriptionHeader flex-row flex-wrap px-2' style={{alignItems:"center", backgroundColor:"lightgrey"}}>
-    <h3>Subsciption #{index+1} </h3> 
+    <h3>Subscription #{index+1} </h3> 
     
   <div className='flex-row justify-space-between flex-nowrap' style={{alignItems:"center", flex:"1 1"}}>
     <span style={{marginLeft:"2rem"}}>started: {new Date(parseInt(subscription.purchaseDate)).toLocaleDateString()}</span>

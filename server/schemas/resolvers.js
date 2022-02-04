@@ -155,19 +155,10 @@ const resolvers = {
             throw new AuthenticationError('Not logged in.');
         },
         updateSubscription: async(parent, { id, meals }, context) => {
-            const data = await User.findOneAndUpdate({ "_id": context.user._id, "subscription._id": id }, {
-                $set: {
-                    'subscription': { meals: meals }
-                }
-            }, { new: true });
-
+            const data = await User.findOneAndUpdate({ _id: context.user._id, "subscription._id": id }, { $set: { "subscription.$.meals": meals } }, { new: true });
+            data.subscription.sort((a, b) => b.purchaseDate - a.purchaseDate);
             return data;
         },
-        // updateMeal: async (parent, { _id, quantity }) => {
-        //     const decrement = Math.abs(quantity) * -1;
-
-        //     return await Meal.findByIdAndUpdate(_id, {$inc: { quantity: decrement }}, { new: true });
-        // },
         login: async(parent, { email, password }) => {
             const user = await User.findOne({ email });
 
