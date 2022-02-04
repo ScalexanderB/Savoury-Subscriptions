@@ -14,6 +14,7 @@ import NoMatch from './pages/NoMatch';
 import Nav from './components/Nav';
 import MyProfile from './pages/MyProfile';
 import Success from './pages/Success';
+import Expired from './pages/ExpiredToken';
 import Footer from './components/Footer';
 
 import { StoreProvider } from "./utils/GlobalState";
@@ -34,7 +35,19 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      user: {
+        fields: {
+          subscription: {
+            merge(existing = [], incoming = []) {
+              return incoming;
+            },
+          },
+        },
+      },
+    },
+  }),
 });
 
 function App() {
@@ -49,6 +62,7 @@ function App() {
             <Route exact path="/meals" component={Meals} />
             <Route exact path="/myprofile" component={MyProfile} />
             <Route exact path="/success" component={Success} />
+            <Route exact path="/expired" component={Expired} />
             <Route component={NoMatch} />
           </Switch>
           <Footer />

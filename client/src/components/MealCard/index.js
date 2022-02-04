@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_TO_CART } from '../../utils/actions';
@@ -21,7 +21,12 @@ function MealCard(item) {
   const [qty, setQty] = useState(startingQuantity);
   // for added message flash alert
   const [added, setAdded] = useState(0);
-
+  
+  useEffect(()=>{
+    let startingQuantity  = parseInt(item.quantity) || 1;
+    setQty(startingQuantity);
+  },[setQty, item])
+  
   const onChange = (e) => {
     
     let value = e.target.value;
