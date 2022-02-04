@@ -1,0 +1,61 @@
+@media screen and (max-width: 992px) {
+    .container {
+        width: 99%;
+        max-width: 99%;
+    }
+    .account-info {
+        width: 100%;
+    }
+    .no-sub {
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .no-sub img {
+        max-width: 100%;
+    }
+    .browse {
+        justify-content: center;
+        align-items: center;
+        margin-bottom: var(--spacing-five);
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        flex: 0 0 99%;
+    }
+    .SubBox.card {
+        flex: 0 0 16rem;
+    }
+    #slideInMenu .card {
+        flex: 0 0 22rem;
+    }
+    #slideInMenuLabel {
+        flex: 0 1 80%;
+    }
+    .mealCost {
+        padding-top: .6rem;
+    }
+    .meal-promo {
+        width: 100%;
+        margin-bottom: var(--spacing-four);
+    }
+    header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .home-link {
+        max-width: 40%;
+    }
+    nav {
+        padding-bottom: var(--spacing-three);
+    }
+}
+
+@media screen and (max-width: 425px) {
+    #slideInMenu .card {
+        flex: 0 0 99%;
+    }
+}

@@ -118,6 +118,7 @@ export const REMOVE_FAV_MEAL = gql `
 export const REMOVE_SUBSCRIPTION = gql `
  mutation removeSubscription($id: ID! ) {
   removeSubscription(id: $id) {
+    _id
     subscription {
       _id
       purchaseDate

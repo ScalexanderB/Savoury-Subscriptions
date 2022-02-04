@@ -34,7 +34,7 @@ const resolvers = {
                     populate: 'category'
                 });
 
-                user.subscription.sort((a, b) => b.purchaseDate - a.purchaseDate);
+                //user.subscription.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
                 return user;
             }
@@ -56,16 +56,10 @@ const resolvers = {
         allSubs: async(parent, args, context) => await Subscription.find({}),
         checkout: async(parent, args, context) => {
             console.log("########### NEW CHECKOUT ############");
-
-            const url = new URL(context.headers.referer).origin;
-            //const subscription = new Subscription({ meals: args.meals, categories: ["Test", "Category"] });
-            const line_items = [];
-
-            // const order = await subscription.populate('meals').execPopulate();
-
-            //console.log(order);
             const { meals } = args;
+            const url = new URL(context.headers.referer).origin;
 
+            const line_items = [];
             for (let i = 0; i < meals.length; i++) {
                 const product = await stripe.products.create({
                     name: meals[i].name,
@@ -108,15 +102,10 @@ const resolvers = {
         addSubscription: async(parent, { meals, categories }, context) => {
             console.log("++++++++++ PAYMENT SUCCESS +++++++++++++");
             console.log(`Adding Subscription to ${context.user.firstName}`);
-            //console.log(categories);
-            //console.log(meals);
 
             if (context.user) {
                 const subscription = new Subscription({ meals, categories });
-
                 const data = await User.findByIdAndUpdate(context.user._id, { $push: { subscription: subscription } });
-                //console.log(data);
-
                 return subscription;
             }
 
@@ -155,19 +144,10 @@ const resolvers = {
             throw new AuthenticationError('Not logged in.');
         },
         updateSubscription: async(parent, { id, meals }, context) => {
-            const data = await User.findOneAndUpdate({ "_id": context.user._id, "subscription._id": id }, {
-                $set: {
-                    'subscription': { meals: meals }
-                }
-            }, { new: true });
-
+            const data = await User.findOneAndUpdate({ _id: context.user._id, "subscription._id": id }, { $set: { "subscription.$.meals": meals } }, { new: true });
+            //data.subscription.sort((a, b) => b.purchaseDate - a.purchaseDate);
             return data;
         },
-        // updateMeal: async (parent, { _id, quantity }) => {
-        //     const decrement = Math.abs(quantity) * -1;
-
-        //     return await Meal.findByIdAndUpdate(_id, {$inc: { quantity: decrement }}, { new: true });
-        // },
         login: async(parent, { email, password }) => {
             const user = await User.findOne({ email });
 
