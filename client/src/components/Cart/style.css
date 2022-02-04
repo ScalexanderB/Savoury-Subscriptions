@@ -116,15 +116,3 @@
     /* transition-delay: .15s; */
     transition: .05s ease;
 }
-
-@media screen and (max-width: 768px) {
-    .card {
-        flex: 0 0 99%;
-    }
-    #slideInMenu .card {
-        flex: 0 0 22rem;
-    }
-    .mealCost {
-        padding-top: .6rem;
-    }
-}
