@@ -8,12 +8,26 @@ function EditAddress(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    
+    let theUpdates = {};
+    if (formState.address1)theUpdates.addressLine = [formState.address1];
+    if (formState.address2)theUpdates.addressLine[1] = formState.address2;
+    if (formState.city)theUpdates.city = formState.city;
+    if (formState.province)theUpdates.province = formState.province;
+    if (formState.postalCode)theUpdates.postalCode = formState.postalCode;
+    if (!theUpdates){
+       setFormState({     
+       ...formState,
+       'errMsg': "Something went wrong with your edit!"
+   });
+  return 0;
+  };
+   
+   
+
     const mutationResponse = await updateUser({
       variables: {
-        addressLine: [formState.address1,formState.address2],
-        city: formState.city,
-        province: formState.province,
-        postalCode: formState.postalCode
+        ...theUpdates
       },
     })    
     .catch(err=> {
@@ -24,8 +38,7 @@ function EditAddress(props) {
    });
 
    if(mutationResponse){
-     // Signup is done redirect the user somewhere special
-    window.location.assign('/myprofile');
+    document.getElementById("EditAddressClose").click();
    }
 
   };
@@ -38,18 +51,18 @@ function EditAddress(props) {
     });
   };
 
-  const editClick = () =>{
-    document.getElementById('EditButton').click();
-  }
+  // const editClick = () =>{
+  //   document.getElementById('EditButton').click();
+  // }
 
   return (
     <>  
   <div className="offcanvas offcanvas-top" data-bs-scroll="true" tabIndex="-1" id="popDownSignup2" aria-labelledby="popDownSignup2Label" style={{height:"25rem"}}>
     <div className="offcanvas-header">
       <h4 className="offcanvas-title centeredForm" id="popDownSignup2Label">Update your Address!</h4>
-      <button className='loginToggle highlight'  data-bs-dismiss="offcanvas" data-mdb-toggle="offcanvas" data-mdb-target="#popDownLogin"
-  aria-controls="offcanvasExample" onClick={editClick}>← Go Back</button>
-      <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      {/* <button className='loginToggle highlight'  data-bs-dismiss="offcanvas" data-mdb-toggle="offcanvas" data-mdb-target="#popDownLogin"
+  aria-controls="offcanvasExample" >← Go Back</button> */}
+      <button id="EditAddressClose" type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       
     </div>
 

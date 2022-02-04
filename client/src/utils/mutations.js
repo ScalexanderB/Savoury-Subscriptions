@@ -71,6 +71,7 @@ export const UPDATE_USER = gql `
       province: $province
       postalCode: $postalCode
        ){
+          _id
           firstName
           lastName
           email

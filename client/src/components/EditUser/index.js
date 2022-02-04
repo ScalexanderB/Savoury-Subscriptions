@@ -3,17 +3,29 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../../utils/mutations';
 
 function EditUser(props) {
-    const [formState, setFormState] = useState({ firstName: '', lastName: '', email: '', password: '', address1: '', address2: '', city: '', postalCode: '', errMsg: '' });
+    const [formState, setFormState] = useState({ firstName: '', lastName: '', email: '', password: '', errMsg: '' });
     const [updateUser] = useMutation(UPDATE_USER);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+
+        let theUpdates = {};
+    if (formState.firstName)theUpdates.firstName = formState.firstName;
+    if (formState.lastName)theUpdates.lastName = formState.lastName;
+    if (formState.email)theUpdates.email = formState.email;
+    if (formState.password)theUpdates.password = formState.password;
+    
+    if (!theUpdates){
+       setFormState({     
+       ...formState,
+       'errMsg': "Something went wrong with your edit!"
+   });
+  return 0;
+  };
+
         const mutationResponse = await updateUser({
             variables: {
-                email: formState.email,
-                password: formState.password,
-                firstName: formState.firstName,
-                lastName: formState.lastName,
+                ...theUpdates
             },
         })
         .catch(err=> {
@@ -24,8 +36,8 @@ function EditUser(props) {
         });
 
         if(mutationResponse){
-            window.location.assign('/myprofile');
-        }
+          document.getElementById("EditUserClose").click();
+         }
 
     };
 
@@ -37,18 +49,18 @@ function EditUser(props) {
         });
     };
 
-    const editClick = () =>{
-        document.getElementById('EditButton').click();
-      }
+    // const editClick = () =>{
+    //     document.getElementById('EditButton').click();
+    //   }
 
     return (
         <>
             <div className="offcanvas offcanvas-top" data-bs-scroll="true" tabIndex="-1" id="popDownSignUp" aria-labelledby="popDownSignUpLabel" style={{height:"23rem"}}>
     <div className="offcanvas-header">
       <h4 className="offcanvas-title centeredForm" id="popDownSignUpLabel">Update your Information!</h4>
-      <button className='loginToggle highlight'  data-bs-dismiss="offcanvas" data-mdb-toggle="offcanvas" data-mdb-target="#popDownLogin"
-  aria-controls="offcanvasExample" onClick={editClick}>← Go Back</button>
-      <button id="SignupClose" type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      {/* <button className='loginToggle highlight'  data-bs-dismiss="offcanvas" data-mdb-toggle="offcanvas" data-mdb-target="#popDownLogin"
+  aria-controls="offcanvasExample" onClick={editClick}>← Go Back</button> */}
+      <button id="EditUserClose" type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
     <div className="offcanvas-body centeredForm">
